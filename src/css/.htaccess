@@ -1,0 +1,5 @@
+# Set up 400 dagers caching of ubuntu-font
+<FilesMatch "ubuntu.php">
+  ExpiresDefault A34560000
+  Header append Cache-Control "public"
+</FilesMatch>
