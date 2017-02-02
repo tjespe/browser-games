@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd ../src/js
+../../min/assets/jscompress ../../min/initial-js.min.js app.js controllers/masterCtrl.js controllers/categoryCtrl.js controllers/gameCtrl.js controllers/viewCtrl.js directives/para-back.js
+
+../../min/assets/jscompress ../../min/lazy-js.min.js directives/scroll.js controllers/lazyStuff.js controllers/cookieCtrl.js controllers/mailListCtrl.js controllers/submitCtrl.js controllers/homeCtrl.js services/local-storage.js filters/mouth-wash.js filters/chat-time.js directives/embedSrc.js controllers/404Ctrl.js
+
+cd ..
+minify -o ../min/main.min.css css/main.css
