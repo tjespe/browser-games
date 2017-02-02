@@ -14,12 +14,12 @@ if ($norsk) {
       <span class="glyphicon glyphicon-envelope testimonial-glyph"></span>
     </div>
     <form name="m.form" style="flex:2;">
-      <h3><?= $text->{'mailListHeading'} ?></h3>
-      <div><?= $text->{'mailListContent'} ?></div>
-      <input class="mail-input" type="email" name="mail" ng-model="m.mail" placeholder="<?= $text->{'yourMail'} ?>" required>
+      <h3 ng-bind="master.textData.mailListHeading"></h3>
+      <div ng-bind="master.textData.mailListContent"></div>
+      <input class="mail-input" type="email" name="mail" ng-model="m.mail" placeholder="{{master.textData.yourMail}}" required>
       <ul class="nav nav-pills mail-menu flex">
-        <li style="flex:1;"><a href ng-click="m.subscribe()" ng-disabled="m.mailAddress.$invalid"><?= $text->{'signMeUp'} ?></a></li>
-        <li style="flex:1;"><a href ng-click="m.cancel()"><?= $text->{'notToday'} ?></a></li>
+        <li style="flex:1;"><a href ng-click="m.subscribe()" ng-disabled="m.mailAddress.$invalid" ng-bind="master.textData.signMeUp"></a></li>
+        <li style="flex:1;"><a href ng-click="m.cancel()" ng-bind="master.textData.notToday"></a></li>
       </ul>
     </form>
   </div>
