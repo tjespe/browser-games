@@ -1,9 +1,0 @@
-ExpiresActive On
-ExpiresDefault A1209600
-Header append Cache-Control "public"
-
-# Set error documents
-ErrorDocument 404 https://www.thorin-games.tk/404
-ErrorDocument 403 https://www.thorin-games.tk/403
-ErrorDocument 402 https://www.thorin-games.tk/402
-ErrorDocument 401 https://www.thorin-games.tk/401
