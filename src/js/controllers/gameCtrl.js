@@ -194,7 +194,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
   });
 
   $window.onbeforeunload = function () {
-    if (disable) {return locChangeAlert;}
+    if (disable) return locChangeAlert;
   };
 
   $scope.goBack = function () {
