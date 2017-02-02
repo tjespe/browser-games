@@ -1,4 +1,4 @@
-app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', '$scope', '$location', '$timeout', '$injector', '$q', 'initialJSON', '$lhttp', function($http, $window, $rootScope, $routeParams, $scope, $location, $timeout, $injector, $q, initialJSON, $lhttp) {
+app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', '$scope', '$location', '$timeout', '$injector', '$q', 'initialJSON', '$lhttp', 'urls', function($http, $window, $rootScope, $routeParams, $scope, $location, $timeout, $injector, $q, initialJSON, $lhttp, urls) {
   var vm = this;
   vm.disabled = false;
   var block = false;
@@ -32,7 +32,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
     if (!block && !vm.allGamesAreDisplayed()) {
       block = true;
       var fr = vm.games.length;
-      var url = '//script.google.com/macros/s/AKfycbxGh5agyHkqBi5KbpYxl9G2gJlR5kuJzjJ--5BaP-KfcgaItx0/exec?from='+fr+'&amount='+x+'&d='+Math.floor(Date.now()/(3.6*10e5));
+      var url = urls.getGames'?from='+fr+'&amount='+x+'&d='+Math.floor(Date.now()/(3.6*10e5));
       if (initialJSON.pass.length>0) url += '&pass='+initialJSON.pass;
       $lhttp.get(url, 1400)
         .then(function(data){

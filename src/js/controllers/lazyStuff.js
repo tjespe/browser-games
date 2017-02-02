@@ -1,14 +1,14 @@
-app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routeParams', '$lhttp', function ($http, $scope, local, $location, $routeParams, $lhttp) {
+app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routeParams', '$lhttp', 'urls', function ($http, $scope, local, $location, $routeParams, $lhttp, urls) {
     var vm = this;
 
-    $scope.master.rate = function (x, url, i) {
+    $scope.master.rate = function (x, action, i) {
       if (!$scope.master.disabled) {
         $scope.master.disabled = true;
         var start = Date.now();
 
         var request = $http({
-          method:"post",
-          url: '//static.thorin-games.tk/php/'+url,
+          method:"get",
+          url: urls.rating+"?action="+action+"&id="+x,
           data: x,
           headers: { 'Content-Type':'application/x-www-form-url-encoded' }
         });

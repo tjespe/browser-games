@@ -1,4 +1,4 @@
-app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', function ($http, $scope, initialJSON) {
+app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', 'urls', function ($http, $scope, initialJSON, urls) {
   var vm = this;
   $scope.master.loc = "Thorin-Games — Submit a game";
   $scope.master.desc = "If you want to, you can submit a game to Thorin-Games, all you have to do is to fill out the form below and tap submit";
@@ -53,7 +53,7 @@ app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', function ($http,
 
       var request = $http({
         method: 'POST',
-        url: '//static.thorin-games.tk/php/submit-game-to-db.php',
+        url: urls.submitGame,
         data: vm.game
       });
 

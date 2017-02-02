@@ -49,9 +49,9 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
   .when('/401', {
     templateUrl: vp+'error.php?error_code=401'
   })
-  .otherwise({
+  /*.otherwise({
     templateUrl: vp+'error.php?error_code=404'
-  });
+  });*/
   $sceProvider.enabled(true);
 
   $locationProvider.html5Mode(true);
@@ -97,10 +97,10 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
 app.service('initialJSON', ['$http', '$lhttp', function ($http, $lhttp) {
   var vm = this;
   vm.pass = encodeURIComponent(window.location.search.slice(1)+window.location.hash.slice(1));
-  var url = 'https://static.thorin-games.tk/js/initialJSON.php';
-  if (vm.pass.length>0) url += '?pass='+vm.pass;
+  /*var url = 'https://static.thorin-games.tk/js/initialJSON.php';
+  if (vm.pass.length>0) url += '?pass='+vm.pass;*/
 
-  vm.json = $lhttp.get(url);
+  vm.json = $lhttp.get("data:application/json;base64,e30=");
 
   vm.jquery = $lhttp.get("https://code.jquery.com/jquery-2.2.3.min.js", 0);
 
@@ -123,6 +123,17 @@ app.directive('script', function() {
       }
     }
   };
+});
+
+// Value entry to make the long server side urls more accessible from controllers
+app.value('urls', {
+  'rating': 'https://script.google.com/macros/s/AKfycbzulzGAeSR2eErndxSAUkDi3dXlnmYif0MlkpjnfJsHKVNSMpE/exec',
+  'checkIfChanged': '', // This script isn't made yet
+  'comment': 'https://script.google.com/macros/s/AKfycbwK2mif23UU5f9B2NXuvcRT6VajMU7iXQPxRnlKeNtfsD2Eflvz/exec', // Warning: this script isn't tested yet
+  'countGames': 'https://script.google.com/macros/s/AKfycbwc3i7zLH3vC8HWnVtBVPqZkv8iOMIlxKZ1E7gL2bdIL8kd9lA/exec',
+  'getGames': 'https://script.google.com/macros/s/AKfycbxGh5agyHkqBi5KbpYxl9G2gJlR5kuJzjJ--5BaP-KfcgaItx0/exec',
+  'submitGame': 'https://script.google.com/macros/s/AKfycbxh_WPU_DKwT3xAxR0BCcjb_wQ4pQG2nspBbpKra94BEYlO4yw/exec', // Warning: this script isn't tested yet
+  'subscribe': '' // This script isn't made yet
 });
 
 app.service('$lhttp', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {

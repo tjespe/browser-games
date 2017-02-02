@@ -1,4 +1,4 @@
-app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interval', '$timeout', '$q', '$window', '$rootScope', '$location', 'initialJSON', '$lhttp', function($scope, $routeParams, $http, $sce, $interval, $timeout, $q, $window, $rootScope, $location, initialJSON, $lhttp) {
+app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interval', '$timeout', '$q', '$window', '$rootScope', '$location', 'initialJSON', '$lhttp', 'urls', function($scope, $routeParams, $http, $sce, $interval, $timeout, $q, $window, $rootScope, $location, initialJSON, $lhttp, urls) {
   var vm = this;
   var block = false;
   var disable = false;
@@ -12,7 +12,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
   vm.showGame = false;
   if ($scope.master.norsk) {text = "Dette spillet kan ikke spilles her. Trykk her for å bli videresendt til riktig side";}
   $scope.noInstr = false;
-  var url = '//static.thorin-games.tk/js/get-games-from-db.php?id='+$routeParams.id+'&pass='+initialJSON.pass;
+  var url = '//script.google.com/macros/s/AKfycbxGh5agyHkqBi5KbpYxl9G2gJlR5kuJzjJ--5BaP-KfcgaItx0/exec?id='+$routeParams.id+'&pass='+initialJSON.pass;
   $lhttp.get(url, 1500).then(function(data) {
     $scope.detail = data;
     console.log("data.mobile = (",typeof data.mobile,") ",data.mobile);
@@ -37,41 +37,37 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
 
   });
 
-  var rate = function (x, url) {
+  var rate = function (x, action) {
     disable = true; block = true;
     var start = Date.now();
 
     var request = $http({
-      method:"post",
-      url: '//static.thorin-games.tk/php/'+url,
-      data: x,
-      headers: { 'Content-Type':'application/x-www-form-url-encoded' }
+      method:"get",
+      url: urls.rating+'?action='+action+"&id="+x
     });
 
     request.success(function(data){
-      var stop = Date.now();
-      var diff = (stop - start)/1000;
+      var diff = (Date.now() - start)/1000;
       console.log("%cDin rating er sendt, requesten tok "+diff+" sek, her er statistikk fra serveren:", bigSuccess);
       console.log(data.logdata);
       //$scope.detail.likes = data.likes;
       disable = false; block = false;
+      $scope.detail.likes = data.data;
     });
   };
 
   $scope.like = function(x) {
-    rate(x, "like.php", 1);
-    $scope.detail.likes += 1;
+    rate(x, "like", 1);
   };
   $scope.dislike = function(x) {
-    rate(x, "dislike.php", -1);
-    $scope.detail.likes -= 1;
+    rate(x, "dislike", -1);
   };
 
   $scope.refresh = function() {
     disable = true;block = true;
     var start = Date.now();
     var stop;
-    $http.get('//static.thorin-games.tk/js/get-games-from-db.php?id='+$routeParams.id+'&pass='+initialJSON.pass+'&dt='+Date.now()).success(function(data) {
+    $http.get(urls.getGames+'?id='+$routeParams.id+'&pass='+initialJSON.pass+'&dt='+Date.now()).success(function(data) {
       $scope.detail.comments = data.comments;
       stop = Date.now();
       var dur = stop - start;
@@ -84,7 +80,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
   $scope.ifAnyChanges = function() {
     if (!block && !disable) {
       block = true;
-      var u = "//static.thorin-games.tk/php/check-if-db-changed.php?"+Math.floor(Date.now()/10000);
+      var u = urls.checkIfChanged+"?"+Math.floor(Date.now()/10000);
       var start = Date.now();
       var request = $http({
         method: "post",
@@ -151,7 +147,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
         var start = Date.now();
         var request = $http({
           method: "post",
-          url: "//static.thorin-games.tk/php/comment-in-db.php",
+          url: urls.comment,
           data: {
             index: $routeParams.id,
             com: $scope.comment,

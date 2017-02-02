@@ -1,5 +1,5 @@
 console.log("Executing mailListCtrl.js");
-app.controller('mailListCtrl', ['$http', '$timeout', 'local', '$scope', function ($http, $timeout, local, $scope) {
+app.controller('mailListCtrl', ['$http', '$timeout', 'local', '$scope', 'urls', function ($http, $timeout, local, $scope, urls) {
   var vm = this;
   vm.mail = "";
   var nextMonth = Date.now()+(1000*60*60*24*30);
@@ -30,7 +30,7 @@ app.controller('mailListCtrl', ['$http', '$timeout', 'local', '$scope', function
 
       var request = $http({
         method: 'post',
-        url: '//static.thorin-games.tk/php/subscribe.php',
+        url: urls.subscribe,
         data: vm.mail
       });
 
