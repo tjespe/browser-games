@@ -29,6 +29,8 @@
         </ul>
       </div>
     </div>
+
+    <!-- Container for ad: -->
     <!--div class="game-info-container" ng-if="( $index + 1 ) % 10 == 0 || $last" ng-repeat-end>
       <div class="title"><img src="https://cdn4.iconfinder.com/data/icons/advertising-soft/512/marketing_banner_promotion_advertising_advertisement_ad_ads-128.png">Advertisement</div>
       <div class="ad">
