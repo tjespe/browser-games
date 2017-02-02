@@ -1,4 +1,4 @@
-app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'initialJSON', '$lazy', function ($http, $routeParams, $scope, initialJSON, $lazy) {
+app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'initialJSON', '$lhttp', function ($http, $routeParams, $scope, initialJSON, $lhttp) {
   var vm = this;
   console.log($routeParams);
   vm.tag = $routeParams.category;
@@ -15,7 +15,7 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'initialJSON'
   vm.noGames = false;
   var block = false;
 
-  $lazy.get('//static.thorin-games.tk/php/count-games-in-db.php?tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass, vm.tag+"_amount", 800).then(function (data) {
+  $lhttp.get('//static.thorin-games.tk/php/count-games-in-db.php?tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass, 800).then(function (data) {
     vm.x = data;
     var str = $scope.master.desc;
     var q = " games";
@@ -32,7 +32,7 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'initialJSON'
       var to = fr + x;
       if (to>vm.x) {to = vm.x;}
       var url = '//static.thorin-games.tk/js/get-games-from-db.php?from='+fr+'&to='+to+'&tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass;
-      $lazy.get(url, vm.tag+"_games_from_"+fr+"_to_"+to, 1500).then(function(data){
+      $lhttp.get(url, 1500).then(function(data){
         Array.prototype.push.apply(vm.games, data.data);
         block = false;
         $scope.master.categoryGames[vm.tag] = vm.games;

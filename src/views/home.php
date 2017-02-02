@@ -1,49 +1,9 @@
-<?php
-header("Access-Control-Allow-Origin: *");
-$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-$t1 = round(microtime(true) * 1000000) - $start;
-if (($lang == "nb" || $lang == "nn" || $lang == "no" || (isset($_GET['lang']) && substr($_GET['lang'], 0, 2) == "no")) && !(isset($_GET['lang']) && substr($_GET['lang'], 0, 2) == "en")) {
-  $text = json_decode(file_get_contents("/home/u981191581/games-js/objects/no-text.json"));
-} else {
-  $text = json_decode(file_get_contents("/home/u981191581/games-js/objects/en-text.json"));
-}
-
-?>
-
 <div class="content top-padded subheader" ng-if="master.lazyModulesLoaded">
   <div ng-controller="homeCtrl as h">
-    <?= $text->{"intro"} ?><br><br>
-    <span><?= $text->{"amountOfGames"} ?>: {{h.len}}</span>
+    <span ng-bind="master.textData.intro"></span><br><br>
+    <span><span ng-bind="master.textData.amountOfGames"></span>: <span ng-if="master.lazyModulesLoaded">{{h.len}}</span><span ng-if="!master.lazyModulesLoaded">...</span></span>
   </div>
 </div>
-
-<div class="content top-padded subheader" ng-if="!master.lazyModulesLoaded">
-  <div>
-    <?= $text->{"intro"} ?><br><br>
-    <span><?= $text->{"amountOfGames"} ?>: ...</span>
-  </div>
-</div>
-
-<!--div class="content top-padded" ng-show="master.weatherWarning">
-  <div class="container">
-    <div class="col-sm-4">
-      <img class="weather-icon" ng-src="{{::master.weatherIcon}}">
-    </div>
-    <div class="col-sm-8">
-      <li class="list-group-item list-group-item-warning"><?= $text->{'weatherWarning'} ?></li>
-    </div>
-  </div>
-
-  <div class="container" style="margin-top:20px;">
-    <div class="col-sm-4">
-      <b><?= $text->{'degrees'} ?>:</b> {{::master.degrees}}°C<br>
-      <b><?= $text->{'weather'} ?>:</b> {{::master.weather}}<br>
-    </div>
-    <div class="col-sm-8">
-      <a href="{{::master.credit.link}}" style="color: #005493;"><?= $text->{'weatherCredit'} ?></a>
-    </div>
-  </div>
-</div-->
 
 <div class="content games-wrapper noselect">
   <div id="games">

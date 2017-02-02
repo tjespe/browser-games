@@ -11,7 +11,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.otag = "";
   vm.tags = [];
   vm.x = 18;
-  //vm.textData = {};
+  vm.textData = {};
 
   vm.tagLimit = 8;
   vm.showAllTags = false;

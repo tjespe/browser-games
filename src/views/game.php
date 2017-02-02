@@ -1,13 +1,3 @@
-<?php
-header("Access-Control-Allow-Origin: *");
-$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-$norsk = ($lang == "nb" || $lang == "nn" || $lang == "no" || (isset($_GET['lang']) && substr($_GET['lang'], 0, 2) == "no")) && !(isset($_GET['lang']) && substr($_GET['lang'], 0, 2) == "en");
-if ($norsk) {
-  $text = json_decode(file_get_contents("/home/u981191581/games-js/objects/no-text.json"));
-} else {
-  $text = json_decode(file_get_contents("/home/u981191581/games-js/objects/en-text.json"));
-}
- ?>
 <div class="back-container" ng-class="{'absolute-container':ifSpace()}">
   <a class="back-arrow" href ng-click="goBack()"><span class="glyphicon glyphicon-arrow-left"></span></a>
 </div>
@@ -52,8 +42,8 @@ if ($norsk) {
 
         <form class="com-container flex" name="commentForm" style="align-items:stretch;">
           <div style="flex:3;">
-            <textarea type="text" name="comment" class="com new-com-field" ng-model="comment" style="max-width: /*98*/99%;" placeholder="<?= $text->{'yourComment'} ?>" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
-            <div class="com-author">— <input type="text" name="author" ng-model="author" class="new-com-field" style="max-width:/*89.8288536*/84%;" placeholder="<?= $text->{'yourNick'} ?>" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
+            <textarea type="text" name="comment" class="com new-com-field" ng-model="comment" style="max-width: /*98*/99%;" placeholder="{{master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
+            <div class="com-author">— <input type="text" name="author" ng-model="author" class="new-com-field" style="max-width:/*89.8288536*/84%;" placeholder="{{master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
           </div>
           <div style="flex:1;display:flex;" class="send-message">
             <a ng-class="{ disabled:ifDisabled() }" class="glyphicon glyphicon-send" ng-click="submit()"></a>

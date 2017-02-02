@@ -1,4 +1,4 @@
-app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interval', '$timeout', '$q', '$window', '$rootScope', '$location', 'initialJSON', '$lazy', function($scope, $routeParams, $http, $sce, $interval, $timeout, $q, $window, $rootScope, $location, initialJSON, $lazy) {
+app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interval', '$timeout', '$q', '$window', '$rootScope', '$location', 'initialJSON', '$lhttp', function($scope, $routeParams, $http, $sce, $interval, $timeout, $q, $window, $rootScope, $location, initialJSON, $lhttp) {
   var vm = this;
   var block = false;
   var disable = false;
@@ -13,7 +13,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
   if ($scope.master.norsk) {text = "Dette spillet kan ikke spilles her. Trykk her for å bli videresendt til riktig side";}
   $scope.noInstr = false;
   var url = '//static.thorin-games.tk/js/get-games-from-db.php?id='+$routeParams.id+'&pass='+initialJSON.pass;
-  $lazy.get(url, "gamedata_"+$routeParams.id+"_"+initialJSON.pass, 1500).then(function(data) {
+  $lhttp.get(url, 1500).then(function(data) {
     $scope.detail = data;
     console.log("data.mobile = (",typeof data.mobile,") ",data.mobile);
     $scope.master.loc = "Thorin-Games — "+data.title;

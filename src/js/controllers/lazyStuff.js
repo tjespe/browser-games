@@ -1,4 +1,4 @@
-app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routeParams', '$lazy', function ($http, $scope, local, $location, $routeParams, $lazy) {
+app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routeParams', '$lhttp', function ($http, $scope, local, $location, $routeParams, $lhttp) {
     var vm = this;
 
     $scope.master.rate = function (x, url, i) {
@@ -127,7 +127,7 @@ app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routePar
     getCss('listGroups', '/custom_bootstrap/css/list-groups.php')
 
     function getCss(x, url) {
-      $lazy.get("//static.thorin-games.tk"+url, x, 0).then(function (data) {
+      $lhttp.get("//static.thorin-games.tk"+url, 0).then(function (data) {
         $scope.master.css += data;
       })
     }
