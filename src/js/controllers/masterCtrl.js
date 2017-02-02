@@ -32,7 +32,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
     if (!block && !vm.allGamesAreDisplayed()) {
       block = true;
       var fr = vm.games.length;
-      var url = urls.getGames'?from='+fr+'&amount='+x+'&d='+Math.floor(Date.now()/(3.6*10e5));
+      var url = urls.getGames+'?from='+fr+'&amount='+x+'&d='+Math.floor(Date.now()/(3.6*10e5));
       if (initialJSON.pass.length>0) url += '&pass='+initialJSON.pass;
       $lhttp.get(url, 1400)
         .then(function(data){
