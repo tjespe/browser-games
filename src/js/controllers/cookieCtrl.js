@@ -16,7 +16,11 @@ app.controller('cookieCtrl', ['$timeout', function ($timeout) {
 
   if ((typeof(Storage) !== "undefined" && localStorage.cookieAccept != "true") && getCookieValue("cookiescriptaccept") != "visit") {
     $timeout(function () {
-      document.getElementsByClassName('cookie-box')[0].setAttribute('style', 'opacity:1;');
+      try {
+        document.getElementsByClassName('cookie-box')[0].setAttribute('style', 'opacity:1;');
+      } catch (e) {
+        console.warn(e);
+      }
       $timeout(vm.close, 5000);
     }, 2500);
   } else {

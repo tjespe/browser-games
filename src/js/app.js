@@ -56,12 +56,6 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
 
   $locationProvider.html5Mode(true);
 
-  // Activate lazy-loading of modules:
-  app._controller = app.controller;
-  app._service = app.service;
-  app._factory = app.factory;
-  app._value = app.value;
-  app._directive = app.directive;
   // Provider-based controller.
   app.controller = function( name, constructor ) {
     $controllerProvider.register( name, constructor );
@@ -115,9 +109,6 @@ app.directive('script', function() {
       if (attr.type === 'text/javascript-lazy') {
         var code = elem[0].text;
         eval(code);
-        /*var code = elem.text();
-          var f = new Function(code);
-          f();*/
       }
     }
   };
@@ -131,7 +122,8 @@ app.value('urls', {
   'countGames': 'https://script.google.com/macros/s/AKfycbwc3i7zLH3vC8HWnVtBVPqZkv8iOMIlxKZ1E7gL2bdIL8kd9lA/exec',
   'getGames': 'https://script.google.com/macros/s/AKfycbxGh5agyHkqBi5KbpYxl9G2gJlR5kuJzjJ--5BaP-KfcgaItx0/exec',
   'submitGame': 'https://script.google.com/macros/s/AKfycbxh_WPU_DKwT3xAxR0BCcjb_wQ4pQG2nspBbpKra94BEYlO4yw/exec', // Warning: this script isn't tested yet
-  'subscribe': '' // This script isn't made yet
+  'subscribe': '', // This script isn't made yet
+  'initialJSON': '' // Not made yet
 });
 
 app.service('$lhttp', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {

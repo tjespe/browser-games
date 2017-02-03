@@ -32,7 +32,7 @@
   </noscript>
 
   <div ng-if="master.mlcLoaded">
-    <div ng-include="'src/html/mail-lightbox.php'"></div>
+    <div ng-include="'src/html/mail-lightbox.html'"></div>
   </div>
 
   <div class="content noselect top-padded" id="menu" ng-show="view.showHeader()">
@@ -49,7 +49,7 @@
   <div class="ng-view" scroll></div>
 
   <lazy ng-if="master.mlcLoaded" id="cookies" class="noselect">
-    <div ng-include="'src/html/cookie-box.php'" ng-controller="cookieCtrl as c"></div>
+    <div ng-include="'src/html/cookie-box.html'" ng-controller="cookieCtrl as c"></div>
   </lazy>
 
   <!-- Minfied file with all js-code: -->

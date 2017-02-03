@@ -51,11 +51,11 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   };
 
   vm.like = function (x) {
-    vm.rate(x, "like.php", 1);
+    vm.rate(x, "like", 1);
   };
 
   vm.dislike = function (x) {
-    vm.rate(x, "dislike.php", -1);
+    vm.rate(x, "dislike", -1);
   };
 
   vm.ifDisabled = ()=>vm.disabled;

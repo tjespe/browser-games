@@ -8,7 +8,7 @@
 <div class="content games-wrapper noselect">
   <div id="games">
     <div ng-repeat="game in master.games track by $index" class="game-info-container">
-      <div class="title" ng-click="master.goToGame(game.id)"><img src="{{::game.thumbnail}}">{{::game.title}}</div>
+      <div class="title" ng-click="master.goToGame(game.id)"><img ng-src="{{::game.thumbnail}}">{{::game.title}}</div>
       <div ng-click="master.goToGame(game.id)"><img height="80px" class="appIcon" ng-src="{{::game.thumbnail}}" alt="{{::game.title}}"></div>
       <div ng-click="master.goToGame(game.id)">
         <span id="{{::game.id}}">{{game.likes}}</span> likes

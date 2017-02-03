@@ -24,7 +24,7 @@
         <h2 ng-bind="master.textData.preview"></h2>
         <h4 ng-bind="master.textData.gameOnHome"></h4>
         <div class="game-info-container" style="margin: 10px auto;">
-          <div class="title"><img src="{{sub.game.thumbnail}}">{{sub.game.title}}</div>
+          <div class="title"><img ng-src="{{sub.game.thumbnail}}">{{sub.game.title}}</div>
           <div><img height="80px" class="appIcon" ng-src="{{sub.game.thumbnail}}"></div>
           <div>
             <span>{{sub.game.likes}}</span> likes

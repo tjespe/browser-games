@@ -70,7 +70,13 @@ app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routePar
       return false;
     };
 
-    for (var attrname in mas) { $scope.master[attrname] = mas[attrname]; }
+    for (var attrname in mas) {
+      try {
+        $scope.master[attrname] = mas[attrname];
+      } catch (e) {
+        console.warn(e);
+      }
+    }
 
     getCss('ubuntu', 'ubuntu.css');
     getCss('glyphs', 'custom_bootstrap/glyphicons.min.css');

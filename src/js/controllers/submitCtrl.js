@@ -84,9 +84,13 @@ app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', 'urls', function
     if (str.length>0) {
       var tags = str.match(/#[^#]+/g);
       for (i=0;i<tags.length;i++){
-        tags[i]=tags[i].replace('#', '');
-        tags[i]=tags[i].trim();
-        tags[i]=toTitleCase(tags[i]);
+        try {
+          tags[i]=tags[i].replace('#', '');
+          tags[i]=tags[i].trim();
+          tags[i]=toTitleCase(tags[i]);
+        } catch (e) {
+          console.warn(e);
+        }
       }
       return tags;
     }
