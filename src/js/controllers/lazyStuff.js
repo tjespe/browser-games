@@ -72,7 +72,7 @@ app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routePar
 
     for (var attrname in mas) { $scope.master[attrname] = mas[attrname]; }
 
-    getCss('ubuntu', 'ubuntu.php');
+    getCss('ubuntu', 'ubuntu.css');
     getCss('glyphs', 'custom_bootstrap/glyphicons.min.css');
     getCss('listGroups', 'custom_bootstrap/list-groups.min.css')
 
