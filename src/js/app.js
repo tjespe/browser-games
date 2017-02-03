@@ -11,31 +11,31 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
 
   $routeProvider
     .when('/', {
-      templateUrl: vp+'home.php'+params
+      templateUrl: vp+'home.html'+params
     })
   .when('/tag/:category', {
-    templateUrl: vp+'category.php'+params,
+    templateUrl: vp+'category.html'+params,
     controller:'categoryCtrl',
     controllerAs:'cat'
   })
   .when('/search/:category', {
-    templateUrl: vp+'category.php'+params,
+    templateUrl: vp+'category.html'+params,
     controller:'categoryCtrl',
     controllerAs:'cat'
   })
   .when('/id/:id', {
     controller: 'gameCtrl',
     controllerAs: 'g',
-    templateUrl: vp+'game.php'+params
+    templateUrl: vp+'game.html'+params
   })
   .when('/submit', {
-    templateUrl: vp+'submit.php'+params
+    templateUrl: vp+'submit.html'+params
   })
   .when('/cookies', {
-    templateUrl: vp+'policy.php'+params
+    templateUrl: vp+'policy.html'+params
   })
   .when('/contact', {
-    templateUrl: vp+'contact.php'+params
+    templateUrl: vp+'contact.html'+params
   })
   .when('/game/:id', {
     redirectTo: '/id/:id'
@@ -44,13 +44,13 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
     redirectTo: '/'
   })
   .when('/403', {
-    templateUrl: vp+'error.php?error_code=403'
+    templateUrl: vp+'error.html?error_code=403'
   })
   .when('/401', {
-    templateUrl: vp+'error.php?error_code=401'
+    templateUrl: vp+'error.html?error_code=401'
   })
   /*.otherwise({
-    templateUrl: vp+'error.php?error_code=404'
+    templateUrl: vp+'error.html?error_code=404'
   });*/
   $sceProvider.enabled(true);
 
@@ -97,8 +97,6 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
 app.service('initialJSON', ['$http', '$lhttp', function ($http, $lhttp) {
   var vm = this;
   vm.pass = encodeURIComponent(window.location.search.slice(1)+window.location.hash.slice(1));
-  /*var url = 'https://static.thorin-games.tk/js/initialJSON.php';
-  if (vm.pass.length>0) url += '?pass='+vm.pass;*/
 
   vm.json = $lhttp.get("data:application/json;base64,e30=");
 

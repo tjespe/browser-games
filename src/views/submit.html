@@ -62,10 +62,10 @@
         <li ng-if="!sub.showPreview"><a href ng-click="sub.showP()" ng-bind="master.textData.showPreview"></a></li>
         <li ng-if="sub.showPreview" ng-class="{ disabled:sub.submitGame.$invalid }" ng-hide="sub.loading"><a href ng-click="sub.submit()" ng-bind="master.textData.submit"></a></li>
       </ul>
-      <div ng-show="sub.loading"><img src="https://static.thorin-games.tk/img/loading.svg" class="loader"></div>
+      <div ng-show="sub.loading"><img src="/src/img/loading.svg" class="loader"></div>
     </div>
   </div>
   <div ng-if="!master.lazyModulesLoaded">
-    <img src="https://static.thorin-games.tk/img/loading.svg" class="loader">
+    <img src="/src/img/loading.svg" class="loader">
   </div>
 </div>
