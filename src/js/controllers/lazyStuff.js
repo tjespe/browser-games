@@ -8,9 +8,7 @@ app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routePar
 
         var request = $http({
           method:"get",
-          url: urls.rating+"?action="+action+"&id="+x,
-          data: x,
-          headers: { 'Content-Type':'application/x-www-form-url-encoded' }
+          url: urls.rating+"?action="+action+"&id="+x
         });
 
         request.success(function(data){
@@ -18,7 +16,7 @@ app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routePar
           var diff = (stop - start)/1000;
           //console.log("%cDin rating er sendt, requesten tok "+diff+" sek, her er statistikk fra serveren:", bs);
           console.log(data.logdata);
-          document.getElementById(x).innerHTML = document.getElementById(x).innerHTML*1+i;
+          document.getElementById(x).innerHTML = data.data;
           $scope.master.disabled = false;
         });
 
