@@ -92,7 +92,7 @@ app.service('initialJSON', ['$http', '$lhttp', 'urls', function ($http, $lhttp, 
   var vm = this;
   vm.pass = encodeURIComponent(window.location.search.slice(1)+window.location.hash.slice(1));
 
-  vm.json = $lhttp.get(urls.initialJSON);
+  vm.json = $lhttp.get(urls.initialJSON+"?pass="+vm.pass);
 
   vm.jquery = $lhttp.get("https://code.jquery.com/jquery-2.2.3.min.js", 0);
 
