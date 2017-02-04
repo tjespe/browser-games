@@ -153,6 +153,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
           $scope.comment = "";
           $scope.tab = 1;
           block = false;
+          $scope.refresh();
         });
 
         request.error(function(status){
