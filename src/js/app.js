@@ -88,11 +88,11 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
   };
 }]);
 
-app.service('initialJSON', ['$http', '$lhttp', function ($http, $lhttp) {
+app.service('initialJSON', ['$http', '$lhttp', 'urls', function ($http, $lhttp, urls) {
   var vm = this;
   vm.pass = encodeURIComponent(window.location.search.slice(1)+window.location.hash.slice(1));
 
-  vm.json = $lhttp.get("data:application/json;base64,e30=");
+  vm.json = $lhttp.get(urls.initialJSON);
 
   vm.jquery = $lhttp.get("https://code.jquery.com/jquery-2.2.3.min.js", 0);
 
@@ -123,7 +123,7 @@ app.value('urls', {
   'getGames': 'https://script.google.com/macros/s/AKfycbxGh5agyHkqBi5KbpYxl9G2gJlR5kuJzjJ--5BaP-KfcgaItx0/exec',
   'submitGame': 'https://script.google.com/macros/s/AKfycbxh_WPU_DKwT3xAxR0BCcjb_wQ4pQG2nspBbpKra94BEYlO4yw/exec', // Warning: this script isn't tested yet
   'subscribe': '', // This script isn't made yet
-  'initialJSON': '' // Not made yet
+  'initialJSON': 'https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec'
 });
 
 app.service('$lhttp', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {

@@ -30,8 +30,8 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'init
       block = true;
       var fr = vm.games.length;
       var to = fr + x;
-      if (to>vm.x) {to = vm.x;}
-      var url = urls.getGames+'?from='+fr+'&to='+to+'&tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass;
+      if (fr+x>vm.x) {x = vm.x - (fr+x);}
+      var url = urls.getGames+'?from='+fr+'&amount='+x+'&tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass;
       $lhttp.get(url, 1500).then(function(data){
         Array.prototype.push.apply(vm.games, data.data);
         block = false;
