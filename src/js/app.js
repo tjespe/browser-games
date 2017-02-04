@@ -117,7 +117,7 @@ app.directive('script', function() {
 // Value entry to make the long server side urls more accessible from controllers
 app.value('urls', {
   'rating': 'https://script.google.com/macros/s/AKfycbzulzGAeSR2eErndxSAUkDi3dXlnmYif0MlkpjnfJsHKVNSMpE/exec',
-  'checkIfChanged': '', // This script isn't made yet
+  'checkIfChanged': 'https://script.google.com/macros/s/AKfycbwx-oLuzjUIAPxMxKiiNFgt6Wgb6T4WGO8UguTGu8HCXUBt-SX7/exec', // This script isn't ready yet
   'comment': 'https://script.google.com/macros/s/AKfycbwK2mif23UU5f9B2NXuvcRT6VajMU7iXQPxRnlKeNtfsD2Eflvz/exec', // Warning: this script isn't tested yet
   'countGames': 'https://script.google.com/macros/s/AKfycbwc3i7zLH3vC8HWnVtBVPqZkv8iOMIlxKZ1E7gL2bdIL8kd9lA/exec',
   'getGames': 'https://script.google.com/macros/s/AKfycbxGh5agyHkqBi5KbpYxl9G2gJlR5kuJzjJ--5BaP-KfcgaItx0/exec',

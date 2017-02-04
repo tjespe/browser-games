@@ -83,13 +83,8 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
       var u = urls.checkIfChanged+"?"+Math.floor(Date.now()/10000);
       var start = Date.now();
       var request = $http({
-        method: "post",
-        url: u,
-        ignoreLoadingBar: true,
-        data: {
-          index: $routeParams.id,
-          coms: $scope.detail.comments.length
-        },
+        method: "get",
+        url: u+"?id="+$routeParams.id+"&coms="+$scope.detail.comments.length,
         timeout: canceler.promise
       });
       request.success(function(data) {
