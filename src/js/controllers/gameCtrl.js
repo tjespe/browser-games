@@ -146,21 +146,15 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
         block = true;
         var start = Date.now();
         var request = $http({
-          method: "post",
-          url: urls.comment,
-          data: {
-            index: $routeParams.id,
-            com: $scope.comment,
-            author: $scope.author,
-            date: Date.now()
-          }
+          method: "get",
+          url: urls.comment+"?id="+$routeParams.id+"&com="+$scope.comment+"&author="+$scope.author
         });
 
         request.success(function(data) {
           disable = false;
           var stop = Date.now();
           var diff = stop - start;
-          $scope.detail.comments = data.comments;
+          $scope.detail.comments = data;
           $scope.comment = "";
           $scope.tab = 1;
           block = false;
