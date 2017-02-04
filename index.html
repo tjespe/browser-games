@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="masterCtrl as master" lang="en-US">
+<head>
+  <script>console.log("%c𝔗𝔥𝔬𝔯𝔦𝔫-𝔊𝔞𝔪𝔢𝔰", "font-size:75px")</script>
+  <title ng-bind="master.loc"><?= $title ?></title>
+  <meta charset="UTF-8">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Thorin-games">
+  <meta name="description" content="{{master.desc}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0">
+  <link rel="apple-touch-icon" href="src/img/apple-touch-icon.png" />
+  <style ng-bind="master.css"></style>
+  <base href="/">
+  <link href="min/main.min.css" rel="stylesheet">
+</head>
+<body para-back="src/img/background.jpg" ng-controller="viewCtrl as view" ontouchstart class="fallback" style="background-image: url(src/img/background.jpg);">
+
+  <lazy ng-if="master.lazyModulesLoaded"><lazy ng-controller="lazyStuff as lazy"></lazy></lazy>
+
+  <header ng-show="view.showHeader()">
+    <h1>Thorin-games</h1>
+  </header>
+
+  <spacer ng-show="view.showHeader()"></spacer>
+
+  <noscript>
+    <div class="content top-padded">
+      This website requires JavaScript in order to work. Please enable JavaScript in your browser settings.
+    </div>
+  </noscript>
+
+  <div ng-if="master.mlcLoaded">
+    <div ng-include="'src/html/mail-lightbox.html'"></div>
+  </div>
+
+  <div class="content noselect top-padded" id="menu" ng-show="view.showHeader()">
+    <ul class="nav nav-pills cat-menu" ng-class="{'show-all': master.showAllTags}">
+      <li ng-class="{ active: master.ifHome() }"><a href ng-click="master.goHome()"><span class="glyphicon glyphicon-stats"></span> <span ng-bind="master.textData.popular"></span></a></li>
+      <li class="submit-g" ng-class="{ active: master.ifAtSubmit() }"><a ng-click="master.goTo('submit')"><span class="glyphicon glyphicon-plus"></span> <span ng-bind="master.textData.submitYourGame"></span></a></li>
+      <li class="contact" ng-class="{ active: master.ifAt('/contact') }"><a ng-click="master.goTo('contact')"><span class="glyphicon glyphicon-earphone"></span> <span ng-bind="master.textData.contact"></span></a></li>
+      <li class="search" ng-class="{ searching: alert(this) }"><a class="no-c-change"><input ng-model="master.otag" placeholder="{{master.textData.search}}" ng-keyup="master.search()"></a></li>
+      <li ng-class="{ active: master.tagIs(tag.name)}" ng-repeat="tag in master.tags" ng-if="tag.amount>13" class="tag"><a href ng-click="master.goTo('tag/'+tag.name)">{{::tag.name}} ({{::tag.amount}})</a></li>
+      <li><a href ng-click="master.toggleTags()" class="glyphicon glyphicon-option-horizontal"></span></a></li>
+    </ul>
+  </div>
+
+  <div class="ng-view" scroll></div>
+
+  <lazy ng-if="master.mlcLoaded" id="cookies" class="noselect">
+    <div ng-include="'src/html/cookie-box.html'" ng-controller="cookieCtrl as c"></div>
+  </lazy>
+
+  <!-- Minfied file with all js-code: -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+  <script src="min/initial-js.min.js"></script>
+  <!-- Shared: -->
+
+  <!-- Other scripts: -->
+  <script>document.getElementById('menu').setAttribute('style', 'display:block;')</script>
+  <script src="src/js/scripts/analytics.js"></script>
+  <!-- Style: -->
+</body>
+
+</html>
