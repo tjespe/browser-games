@@ -52,9 +52,8 @@ app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', 'urls', function
       vm.loading = true;
 
       var request = $http({
-        method: 'POST',
-        url: urls.submitGame,
-        data: vm.game
+        method: 'get',
+        url: urls.submitGame+"?"+createQueryString(vm.data)
       });
 
       request.success(function(data){
@@ -96,6 +95,12 @@ app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', 'urls', function
     }
     return [];
   };
+
+  function createQueryString(obj) {
+    var str = [];
+    for (let p in obj) obj.hasOwnProperty(p) ? str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])) : null;
+    return str.join("&");
+  }
 
   vm.init = function () {
     console.log('initialized');
