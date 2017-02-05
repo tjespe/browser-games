@@ -34,7 +34,6 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
     resizeEmbed();
 
     downloadTime = Date.now();
-
   });
 
   var rate = function (x, action) {
@@ -80,11 +79,11 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
   $scope.ifAnyChanges = function() {
     if (!block && !disable) {
       block = true;
-      var u = urls.checkIfChanged+"?"+Math.floor(Date.now()/10000);
+      var u = urls.checkIfChanged+"?d="+Math.floor(Date.now()/10000)+"&id="+$routeParams.id+"&coms="+$scope.detail.comments.length;
       var start = Date.now();
       var request = $http({
         method: "get",
-        url: u+"?id="+$routeParams.id+"&coms="+$scope.detail.comments.length,
+        url: u,
         timeout: canceler.promise
       });
       request.success(function(data) {
