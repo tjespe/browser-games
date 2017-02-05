@@ -44,14 +44,14 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
     redirectTo: '/'
   })
   .when('/403', {
-    templateUrl: vp+'error.html?error_code=403'
+    templateUrl: vp+'error.html'
   })
   .when('/401', {
-    templateUrl: vp+'error.html?error_code=401'
+    templateUrl: vp+'error.html'
   })
-  /*.otherwise({
-    templateUrl: vp+'error.html?error_code=404'
-  });*/
+  .otherwise({
+    templateUrl: vp+'error.html'
+  });
   $sceProvider.enabled(true);
 
   $locationProvider.html5Mode(true);
