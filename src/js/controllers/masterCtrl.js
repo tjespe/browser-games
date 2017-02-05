@@ -87,9 +87,15 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
     vm.lazyModulesLoaded = true;
   });
 
-  $http.get('src/js/objects/'+(vm.norsk ? 'no' : 'en')+'-text.json').success((data)=>{
+  if (!/bot|curl|spider|google|twitter^$/i.test(navigator.userAgent)) {
+    $lhttp.get('src/js/scripts/analytics.js', 0).then((data)=>{
+      eval(data);
+    });
+  }
+
+  $lhttp.get('src/js/objects/'+(vm.norsk ? 'no' : 'en')+'-text.json').then((data)=>{
     vm.textData = data;
-  }).error((data, status)=>{
+  }).catch((data, status)=>{
     console.log(data, status);
     confirm('Unable to load textdata, do you want to reload the page?') ? location.reload(true) : null;
   });
