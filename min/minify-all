@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$(dirname "$0")"
+
 cd ../src/js
 ../../min/assets/jscompress ../../min/initial-js.min.js app.js controllers/masterCtrl.js controllers/categoryCtrl.js controllers/gameCtrl.js controllers/viewCtrl.js directives/para-back.js
 
