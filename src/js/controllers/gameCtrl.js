@@ -12,7 +12,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
   vm.showGame = false;
   if ($scope.master.norsk) {text = "Dette spillet kan ikke spilles her. Trykk her for å bli videresendt til riktig side";}
   $scope.noInstr = false;
-  var url = '//script.google.com/macros/s/AKfycbxGh5agyHkqBi5KbpYxl9G2gJlR5kuJzjJ--5BaP-KfcgaItx0/exec?id='+$routeParams.id+'&pass='+initialJSON.pass;
+  var url = urls.getGames+'?id='+$routeParams.id+'&pass='+initialJSON.pass;
   $lhttp.get(url, 1500).then(function(data) {
     $scope.detail = data;
     console.log("data.mobile = (",typeof data.mobile,") ",data.mobile);
