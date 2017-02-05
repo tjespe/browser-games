@@ -3,7 +3,7 @@ Thorin-Games is a website that lets anybody play a wide selection of browser gam
 
 The main focus for the website is to have a user friendly and intuitive interface that looks good. The website also aims at getting one of the largest collection of browser games in the future.
 
-We are focused on the user and we give the users a lot of power over the website. The users rate, comment and submit games, and decides what other users are most likely to see.
+We are focused on the user and we give the users a lot of power over the website. The users rate, comment and submit games, and decides what other users are most likely to see. In a way, the users are the editors of the website.
 
 #### This is a screenshot of how the website currently looks:
 ![alt text](src/img/screenshot.png?raw=true "Screenshot")
