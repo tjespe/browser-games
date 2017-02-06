@@ -39,16 +39,18 @@
 
   <div class="content noselect top-padded" id="menu" ng-show="view.showHeader()">
     <ul class="nav nav-pills cat-menu" ng-class="{'show-all': master.showAllTags}">
-      <li ng-class="{ active: master.ifHome() }"><a href ng-click="master.goHome()"><span class="glyphicon glyphicon-stats"></span> <span ng-bind="master.textData.popular"></span></a></li>
-      <li class="submit-g" ng-class="{ active: master.ifAtSubmit() }"><a ng-click="master.goTo('submit')"><span class="glyphicon glyphicon-plus"></span> <span ng-bind="master.textData.submitYourGame"></span></a></li>
-      <li class="contact" ng-class="{ active: master.ifAt('/contact') }"><a ng-click="master.goTo('contact')"><span class="glyphicon glyphicon-earphone"></span> <span ng-bind="master.textData.contact"></span></a></li>
+      <li ng-class="{ active: master.ifHome() }"><a href ng-click="master.goHome()"><span class="glyphicon glyphicon-stats"></span> <span ng-bind="master.textData.popular">Popular</span></a></li>
+      <li class="submit-g" ng-class="{ active: master.ifAtSubmit() }"><a ng-click="master.goTo('submit')"><span class="glyphicon glyphicon-plus"></span> <span ng-bind="master.textData.submitYourGame">Submit a game</span></a></li>
+      <li class="contact" ng-class="{ active: master.ifAt('/contact') }"><a ng-click="master.goTo('contact')"><span class="glyphicon glyphicon-earphone"></span> <span ng-bind="master.textData.contact">Contact</span></a></li>
       <li class="search" ng-class="{ searching: alert(this) }"><a class="no-c-change"><input ng-model="master.otag" placeholder="{{master.textData.search}}" ng-keyup="master.search()"></a></li>
       <li ng-class="{ active: master.tagIs(tag.name)}" ng-repeat="tag in master.tags" ng-if="tag.amount>13" class="tag"><a href ng-click="master.goTo('tag/'+tag.name)">{{::tag.name}} ({{::tag.amount}})</a></li>
       <li><a href ng-click="master.toggleTags()" class="glyphicon glyphicon-option-horizontal"></span></a></li>
     </ul>
   </div>
 
-  <div class="ng-view" scroll></div>
+  <div class="content" ng-if="false">Welcome to Thorin-Games. Here you can find a broad selection of flash and html5 games sorted by popularity and category.<br><br>Amount of games now: 1964</div>
+
+  <div class="ng-view" ng-cloak scroll></div>
 
   <lazy ng-if="master.mlcLoaded" id="cookies" class="noselect">
     <div ng-include="'src/html/cookie-box.html'" ng-controller="cookieCtrl as c"></div>
