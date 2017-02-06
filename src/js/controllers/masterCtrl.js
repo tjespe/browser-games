@@ -79,7 +79,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.lazyModulesLoaded = false;
 
   $rootScope.$on('$routeChangeSuccess', function(event) {
-    $window.ga('send', 'pageview', { page: $location.url() });
+    try {$window.ga('send', 'pageview', { page: $location.url() });} catch (e) { }
   });
 
   $lhttp.get('min/lazy-js.min.js', 2000).then(function (data) {
