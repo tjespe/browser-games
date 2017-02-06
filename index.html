@@ -65,6 +65,8 @@
     <div ng-include="'src/html/cookie-box.html'" ng-controller="cookieCtrl as c"></div>
   </lazy>
 
+  <div class="cookie-box" style="opacity: 1;background: #fefefe;" ng-if="!master.mlcLoaded">This website uses cookies to track pageviews and saves data locally to reduce page load time</div>
+
   <!-- Services -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
