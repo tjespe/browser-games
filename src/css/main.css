@@ -111,7 +111,7 @@ min-width: 25%;
 .no-c-change:active, .no-c-change:hover, .no-c-change:focus{background-color: #fff !important;color:#1a1a1a !important;}
 /*.no-c-change>form {display: flex;align-items: center;}
 .no-c-change>form>input {max-width: 85%;}*/
-.search>a>input{max-width: 145px;min-width: 100%;padding: 10px 15px;border: 1px solid #ccc;border-radius: 5px;background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) 96% / 35px no-repeat;}
+.search>a>input{max-width: 145px;min-width: 100%;padding: 10px 15px;border: 1px solid #ccc;border-radius: 5px;background: url(/src/img/search.png) 96% / 35px no-repeat;}
 .sb{padding: 6px;border-radius: 5px;background: #1a1a1a;color: #fff;border: 0px;width: 30px;height: 30px;}
 .sb:hover{background-color: #ebebeb}
 .sb:active{background-color: #1a1a1a;color: #fff}
