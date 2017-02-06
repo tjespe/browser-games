@@ -9,7 +9,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.routeChanged = false;
   vm.verifiedUser = false;
   vm.otag = "";
-  vm.tags = [];
+  vm.tags = [{"name":"Puzzle","amount":470},{"name":"Action","amount":334},{"name":"Jigsaw Puzzles","amount":315},{"name":"Shooting","amount":256},{"name":"HTML5","amount":210}];
   vm.x = 18;
   vm.textData = {};
 
