@@ -37,7 +37,7 @@
     <div ng-include="'src/html/mail-lightbox.html'"></div>
   </div>
 
-  <div class="content noselect top-padded" id="menu" ng-show="view.showHeader()">
+  <div class="content noselect top-padded" id="menu" ng-show="view.showHeader()" style="min-height:158px">
     <ul class="nav nav-pills cat-menu" ng-class="{'show-all': master.showAllTags}">
       <li ng-class="{ active: master.ifHome() }"><a href ng-click="master.goHome()"><span class="glyphicon glyphicon-stats"></span> <span ng-bind="master.textData.popular">Popular</span></a></li>
       <li class="submit-g" ng-class="{ active: master.ifAtSubmit() }"><a ng-click="master.goTo('submit')"><span class="glyphicon glyphicon-plus"></span> <span ng-bind="master.textData.submitYourGame">Submit a game</span></a></li>
@@ -50,6 +50,15 @@
 
   <div class="content" ng-if="false">Welcome to Thorin-Games. Here you can find a broad selection of flash and html5 games sorted by popularity and category.<br><br>Amount of games now: 1964</div>
 
+  <div class="content games-wrapper" ng-if="false">
+    <div id="games">
+      <div class="game-info-container" ng-hide="cat.allGamesAreDisplayed()">
+        <div class="title"><img src="/src/img/loading.svg" class="loader">Loading...</div>
+        <img src="/src/img/loading.svg" class="loader">
+      </div>
+    </div>
+  </div>
+
   <div class="ng-view" ng-cloak scroll></div>
 
   <lazy ng-if="master.mlcLoaded" id="cookies" class="noselect">
@@ -61,8 +70,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
   <!-- Minfied file with all js-code: -->
   <script src="min/initial-js.min.js"></script>
-  <!-- Other scripts: -->
-  <script>document.getElementById('menu').setAttribute('style', 'display:block;')</script>
 </body>
 
 </html>
