@@ -84,7 +84,7 @@ min-width: 25%;
 .disabled, .disabled>a{background-color: #ccc !important;cursor: not-allowed !important;color: initial !important;}
 .instructions{word-wrap: break-word;flex: 4;}
 .com-container{background-color: #4a4a4a;padding: 13px;border-radius: 10px;margin-bottom: 20px;overflow: auto;}
-.com{margin-bottom: 8px;}
+.com{margin-bottom: 8px;text-align:left}
 .com-author{font-variant: small-caps;font-size: medium;float:left;}
 .com-date{float: right;font-size: small;}
 .trans, #games, .games-wrapper{background-color: transparent;border: 0px}
