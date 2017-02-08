@@ -9,7 +9,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.routeChanged = false;
   vm.verifiedUser = false;
   vm.otag = "";
-  vm.tags = [];
+  vm.tags = [{"name":"Puzzle","amount":470},{"name":"Action","amount":334},{"name":"Jigsaw Puzzles","amount":315},{"name":"Shooting","amount":256},{"name":"HTML5","amount":210},{"name":"Racing","amount":202},{"name":"Adventure","amount":196}];
   vm.x = 18;
   vm.textData = {};
 
@@ -79,7 +79,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.lazyModulesLoaded = false;
 
   $rootScope.$on('$routeChangeSuccess', function(event) {
-    $window.ga('send', 'pageview', { page: $location.url() });
+    try {$window.ga('send', 'pageview', { page: $location.url() });} catch (e) { }
   });
 
   $lhttp.get('min/lazy-js.min.js', 2000).then(function (data) {
