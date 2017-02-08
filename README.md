@@ -9,7 +9,7 @@ We are focused on the user and we give the users a lot of power over the website
 ![alt text](src/img/screenshot.png?raw=true "Screenshot")
 
 ## Contributing
-Our front end is open source and based on angularJS. Feel free to commit any changes you think will improve the website. If a commit changes the JavaScript code, then the shell script at `min/minify-all` must be run afterwards to update the minified JS files and make the changes available to the users.
+Our front end is open source and based on angularJS. Feel free to commit any changes you think will improve the website. If a commit changes the JavaScript code, then the shell script at `min/minify-all` must be run afterwards to update the minified JS files and make the changes available to the users. To run the script you need `npm` and `minifier` for npm.
 
 Our back end is hosted by Google Drive and uses a Google Spreadsheet and Google Scripts. If you want to contribute to this code you would have to be invited first.
 
