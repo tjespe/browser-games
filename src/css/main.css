@@ -100,7 +100,7 @@ min-width: 25%;
 .back-arrow{font-size: 1.5em !important;color: #fbfbfb !important;}
 .back-arrow:hover{color: #ddd !important;}
 .back-arrow:active{color: #666 !important;}
-.back-container{padding-left: 30px;margin-top: 20px;margin-bottom: 15px;}
+.back-container{text-align:left;padding-left: 30px;margin-top: 20px;margin-bottom: 15px;}
 .absolute-container{top: 20px;left: 30px;position: absolute;padding: 0;margin: 0;}
 @keyframes spin {0% {transform: rotate(45deg);}17% {transform: rotate(300deg);}34% {transform: rotate(90deg);}51% {transform: rotate(450deg);}66% {transform: rotate(135deg);}83% {transform: rotate(495deg);}100% {transform: rotate(405deg);}}
 .loader{animation-name: spin;animation-duration: 5s;animation-iteration-count: infinite;}
