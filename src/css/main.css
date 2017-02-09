@@ -270,6 +270,7 @@ h3 {
 }
 
 .back-container {
+  text-align:left;
   padding-left: 30px;
   margin-top: 20px;
   margin-bottom: 15px;
@@ -417,6 +418,7 @@ h3 {
 }
 
 .lightbox {
+>>>>>>> 0e6464e7edb79a085c5b1511832ed2f1f667b983
   display: none !important;
   opacity: 0;
   position: fixed;
