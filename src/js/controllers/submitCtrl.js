@@ -38,26 +38,22 @@ app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', 'urls', function
   vm.showP = function () {
     vm.showPreview = true;
   };
-  var isNum = function (val) { return /^\d+$/.test(val) || val=="n" || val=="r" || /[0-9]*px$/.test(val) || /[0-9]*%$/.test(val); };
+  var isNum = (val)=>/^[\d\.,]+$/.test(val) || val=="n" || val=="r" || /[0-9\.,]*px$/.test(val) || /[0-9\.,]*%$/.test(val);
   vm.submit = function () {
     if (isNum(vm.gameHeight) && isNum(vm.gameWidth)) {
       vm.game.height = vm.gameHeight;
       vm.game.width = vm.gameWidth;
     }
     vm.game.tags = extractTags(vm.gameTags);
-    console.log("Spillet fikk disse taggene:", vm.game.tags, 'hele objektet ser slik ut:', vm.game);
-    console.log($scope);
     if (vm.submitGame.$valid) {
-      console.log("Alt ser bra ut, spillet kan lastes opp");
       vm.loading = true;
 
       var request = $http({
         method: 'get',
-        url: urls.submitGame+"?"+createQueryString(vm.data)
+        url: urls.submitGame+"?"+createQueryString(vm.game)
       });
 
       request.success(function(data){
-        console.log(data);
         vm.showPreview = false;
         vm.loading = false;
         vm.errors = data.errors;
