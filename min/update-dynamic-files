@@ -1,0 +1,6 @@
+#!/bin/sh
+cd "$(dirname "$0")"
+git pull
+curl -L https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec > initialJSON.json
+git commit -a --amend
+git push -f
