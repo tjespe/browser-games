@@ -119,7 +119,7 @@ app.value('urls', {
   'getGames': 'https://script.google.com/macros/s/AKfycbxGh5agyHkqBi5KbpYxl9G2gJlR5kuJzjJ--5BaP-KfcgaItx0/exec',
   'submitGame': 'https://script.google.com/macros/s/AKfycbxh_WPU_DKwT3xAxR0BCcjb_wQ4pQG2nspBbpKra94BEYlO4yw/exec', // Warning: this script isn't tested yet
   'subscribe': '', // This script isn't made yet
-  'initialJSON': 'https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec'
+  'initialJSON': '/min/initialJSON.json'
 });
 
 // This service creates a universal way of loading cacheable resources to improve speed
