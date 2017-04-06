@@ -49,7 +49,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
   $scope.ifAnyChanges = function() {
     if (!block && !disable) {
       block = true;
-      let url = urls.checkIfChanged+"?d="+Math.floor(Date.now()/10000)+"&id="+$routeParams.id+"&coms="+$scope.detail.comments.length;
+      let url = urls.checkIfChanged+"?d="+Math.floor(Date.now()/10000)+"&id="+$routeParams.id+"&coms="+$scope.detail.comments.length, start = Date.now();
       let request = $http({
         method: "get",
         url: url,
@@ -60,7 +60,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
         if (JSON.parse(data)) $scope.refresh();
         for (let i = 0; i < $scope.detail.comments.length; i++) {
           if (!$scope.detail.comments[i].date) $scope.detail.comments[i].date = 1459870175813;
-          $scope.detail.comments[i].date += diff/1000;
+          $scope.detail.comments[i].date += (Date.now()-start)/1000;
         }
       });
       request.error(function(data, status){
@@ -89,19 +89,19 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
       $scope.commentForm.$setUntouched();
       try {localStorage.username = $scope.author} catch (e) { }
       disable = true, block = true;
-      $http.get(urls.comment+"?id="+$routeParams.id+"&com="+$scope.comment+"&author="+$scope.author).then({
+      $http.get(urls.comment+"?id="+$routeParams.id+"&com="+$scope.comment+"&author="+$scope.author).then((response)=>{
         disable = false, block = false;
-        $scope.detail.comments = data;
+        $scope.detail.comments = response.data;
         $scope.comment = "";
         $scope.refresh();
-      }).catch({
+      }).catch(()=>{
         alert("Your message was not submitted.\nPlease try again.");
         block = false, disable = false;
       });
     } else $scope.commentForm.$setTouched();
   };
 
-  $scope.ifDisabled = ()=>return disable;
+  $scope.ifDisabled = ()=>disable;
 
   $rootScope.$on('$locationChangeStart', function(event) {
     if (disable) {
