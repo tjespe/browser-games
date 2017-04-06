@@ -28,7 +28,7 @@
         <div ng-repeat="com in detail.comments track by $index" class="com-container" ng-if="master.mlcLoaded">
           <div class="com" ng-bind="::com.com | mouthWash:this"></div>
           <div class="com-author" ng-bind="::com.author | mouthWash:this"></div>
-          <div class="com-date" ng-bind="::com.date | mouthWash:this"></div>
+          <div class="com-date" ng-bind="::com.date | chatTime:this"></div>
         </div>
 
         <form class="com-container flex" name="commentForm" style="align-items:stretch;">
