@@ -19,3 +19,6 @@ Our back end is hosted by Google Drive and uses a Google Spreadsheet and Google 
 ### Rules for contributing
 - Use the same indentation as everywhere else.
 - Commenting is good. Feel free to comment a lot and explain your changes.
+
+## License:
+Feel free to fork the repository if you want to contribute to it, but do not copy our code and distribute your own website.
