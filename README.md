@@ -1,4 +1,7 @@
 # Thorin-Games
+
+**We recently lost the domain for the website, if we can not get it back, I do not know what will happen to the website**
+
 Thorin-Games is a website that lets anybody play a wide selection of browser games for free **without any ads**.
 
 The main focus for the website is to have a user friendly and intuitive interface that looks good. The website also aims at getting one of the largest collection of browser games in the future.
