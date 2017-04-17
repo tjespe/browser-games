@@ -19,6 +19,11 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.showAllTags = false;
   vm.availableLangs = ['en','es','no'];
 
+//check if language is requested in url
+  if((window.location.href).includes("lang=")){
+    vm.lang=(window.location.href).replace(/.+lang=/,"");
+  }
+
 //check against the available languages
   for(var i = 0;i < vm.availableLangs.length; i++){
     if(vm.lang === vm.availableLangs[i]) break;
