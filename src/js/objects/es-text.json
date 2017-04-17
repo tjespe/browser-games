@@ -1,5 +1,5 @@
 {
-  "401-content": "This server could not verify that you are authorized to access the document requested. Either you supplied the wrong credentials (e.g., bad password), or your browser doesn't understand how to supply the credentials required. In a few moments you will be redirected to the front page",
+  "401-content": "El servidor no pudo verificar que usted esta autorizado a acceder el documento solicitado. O usted ha suministrado los dados incorrectos (p.ej, una mala contraseña), o su navegador no sabe suministrar los datos necesarios. En un momento, usted será redirigido a la página principal",
   "401-header": "No autorizado",
   "403-content": "No se le permite ver el contenido. Pronto será redirigido a la primera página",
   "403-header": "Parece que estas en una ruta de URL incorrecta",
