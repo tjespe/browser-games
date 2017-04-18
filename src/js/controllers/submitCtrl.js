@@ -1,11 +1,5 @@
 app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', 'urls', function ($http, $scope, initialJSON, urls) {
   var vm = this;
-  $scope.master.loc = "Thorin-Games — Submit a game";
-  $scope.master.desc = "If you want to, you can submit a game to Thorin-Games, all you have to do is to fill out the form below and tap submit";
-  if ($scope.master.norsk) {
-    $scope.master.loc = "Thorin-Games — Legg til et spill";
-    $scope.master.desc = "Dersom du \u00f8nsker det kan du legge til et spill til Thorin-Games. Alt du m\u00e5 gj\u00f8re er \u00e5 fylle ut skjemaet nedenfor og trykke legg til.";
-  }
 
   vm.tagValReg = /.*#.+/i;
   vm.game = {
