@@ -29,7 +29,7 @@
   "gameDesc": "Descripción del juego",
   "gameDescErr": "Por favor, escribe una descripción para el juego",
   "gameHeight": "Altura del juego (optional)",
-  "gameInstr": "Instructions (opcional)",
+  "gameInstr": "Instrucciónes (opcional)",
   "gameIsSubmitted": "Su juego ha subido con éxito! Se le agradece por contribuir a Thorin-Games!",
   "gameOnHome": "Así es como se verá su juego en la página",
   "gamePreview": "Esto es una vista anticipada del juego (La altura y la anchura verdaderas no serán así)",
