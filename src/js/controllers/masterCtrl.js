@@ -2,7 +2,10 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   var vm = this;
   vm.disabled = false;
   var block = false;
-  vm.norsk = (navigator.language.indexOf('nb')>-1 || navigator.language.indexOf('nn')>-1 || navigator.language.indexOf('no')>-1 || window.location.search.indexOf('lang=no')>-1)  && !(window.location.search.indexOf('lang=en')>-1);
+  //add lang for language scalability
+  vm.lang = (window.navigator.language).replace(/-.+/g,"");
+  vm.availableLangs = [];
+  //vm.norsk = (navigator.language.indexOf('nb')>-1 || navigator.language.indexOf('nn')>-1 || navigator.language.indexOf('no')>-1 || window.location.search.indexOf('lang=no')>-1)  && !(window.location.search.indexOf('lang=en')>-1);
   vm.desc = "";
   vm.games = [];
   vm.categoryGames = {};
@@ -12,9 +15,21 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.tags = [{"name":"Puzzle","amount":470},{"name":"Action","amount":334},{"name":"Jigsaw Puzzles","amount":315},{"name":"Shooting","amount":256},{"name":"HTML5","amount":210},{"name":"Racing","amount":202},{"name":"Adventure","amount":196}];
   vm.x = 18;
   vm.textData = {};
-
   vm.tagLimit = 8;
   vm.showAllTags = false;
+  vm.availableLangs = ['en','es','no'];
+
+//check if language is requested in url
+  if((window.location.href).includes("lang=")){
+    vm.lang=(window.location.href).replace(/.+lang=/,"");
+  }
+
+//check against the available languages
+  for(var i = 0;i < vm.availableLangs.length; i++){
+    if(vm.lang === vm.availableLangs[i]) break;
+    else if(i === vm.availableLangs.length-1)
+      vm.lang = "en";
+  }
 
   vm.allGamesAreDisplayed = function () {
     if (vm.games.length < vm.x) return false;
@@ -61,7 +76,8 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.ifDisabled = ()=>vm.disabled;
 
   vm.locChangeAlert = "Please don't leave the page until the server has responded";
-  if (vm.norsk) vm.locChangeAlert = "Vennligst ikke forlat siden før serveren har svart";
+  if (vm.lang === "no") vm.locChangeAlert = "Vennligst ikke forlat siden før serveren har svart";
+  if (vm.lang === "es") vm.locChangeAlert = "Por favor no salgas de la pagina hasta que el servidor responda";
 
   $rootScope.$on('$locationChangeStart', function(event) {
     if (vm.disabled) {
@@ -93,7 +109,9 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
     });
   }
 
-  $lhttp.get('src/js/objects/'+(vm.norsk ? 'no' : 'en')+'-text.json').then((data)=>{
+
+
+  $lhttp.get('src/js/objects/'+vm.lang+'-text.json').then((data)=>{
     vm.textData = data;
   }).catch((data, status)=>{
     console.log(data, status);
