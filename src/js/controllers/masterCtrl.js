@@ -5,7 +5,6 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   //add lang for language scalability
   vm.lang = (window.navigator.language).replace(/-.+/g,"");
   vm.availableLangs = [];
-  //vm.norsk = (navigator.language.indexOf('nb')>-1 || navigator.language.indexOf('nn')>-1 || navigator.language.indexOf('no')>-1 || window.location.search.indexOf('lang=no')>-1)  && !(window.location.search.indexOf('lang=en')>-1);
   vm.desc = "";
   vm.games = [];
   vm.categoryGames = {};
@@ -19,17 +18,13 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.showAllTags = false;
   vm.availableLangs = ['en','es','no'];
 
-//check if language is requested in url
+  //check if language is requested in url
   if((window.location.href).includes("lang=")){
     vm.lang=(window.location.href).replace(/.+lang=/,"");
   }
 
-//check against the available languages
-  for(var i = 0;i < vm.availableLangs.length; i++){
-    if(vm.lang === vm.availableLangs[i]) break;
-    else if(i === vm.availableLangs.length-1)
-      vm.lang = "en";
-  }
+  //check against the available languages
+  vm.lang = vm.availableLangs.indexOf(vm.lang)>-1 ? vm.lang : 'en';
 
   vm.allGamesAreDisplayed = function () {
     if (vm.games.length < vm.x) return false;
@@ -108,9 +103,6 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
       eval(data);
     });
   }
-
-
-
   $lhttp.get('src/js/objects/'+vm.lang+'-text.json').then((data)=>{
     vm.textData = data;
   }).catch((data, status)=>{
