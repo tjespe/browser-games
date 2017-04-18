@@ -4,14 +4,22 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'init
   vm.amount = 1;
   vm.noGames = false;
   $scope.master.loc = "Thorin-Games — "+vm.tag;
-  $scope.master.desc = $scope.master.norsk ? "Here you can find all our games with the tag "+vm.tag+" sorted by popularity" : "Her kan du finne alle våre spill med taggen \""+vm.tag+"\" sortert etter popularitet";
+  vm.description = {
+    'en': "Here you can find all our games with the tag "+vm.tag+" sorted by popularity",
+    'no': "Her kan du finne alle våre spill med taggen \""+vm.tag+"\" sortert etter popularitet",
+    'es': "Aqui se encuentra todos nuestros juegos con la etiqueta \""+vm.tag+"\" Ordenado por popularidad"
+  };
+  $scope.master.desc = vm.description[$scope.master.lang];
   vm.games = vm.tag in $scope.master.categoryGames ? vm.games = $scope.master.categoryGames[vm.tag] : [];
 
+  // Get the amount of matching games from the server
   $lhttp.get(urls.countGames+'?tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass, 800).then(function (data) {
     vm.amount = Number(data);
     let str = $scope.master.desc;
-    let q = $scope.master.norsk ? " games" : " spill";
-    $scope.master.desc = str.substring(0, str.indexOf(q)) + ' ' + data + str.substring(str.indexOf(q));
+    // Add the number of games to the description
+    let query = ' '+$scope.master.textData.games;
+    $scope.master.desc = str.substring(0, str.indexOf(query)) + ' ' + data + str.substring(str.indexOf(query));
+    // Request games from the server
     vm.amount > 18 ? vm.requestGames(18) : vm.requestGames(vm.amount);
     if (vm.amount==0) vm.noGames = true;
   });
@@ -30,5 +38,7 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'init
     }
   };
 
-  vm.allGamesAreDisplayed = ()=>vm.games.length < vm.amount;
+  vm.allGamesAreDisplayed = ()=>{
+    return vm.games.length >= vm.amount;
+  }
 }]);
