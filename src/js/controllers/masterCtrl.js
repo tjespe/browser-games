@@ -23,6 +23,9 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
     vm.lang=(window.location.href).replace(/.+lang=/,"");
   }
 
+  // Rewrite Norwegian Bokmål and Norwegian Nynorsk to Norwegian
+  vm.lang = (vm.lang == 'nb' || vm.lang == 'nn') ? 'no' : vm.lang;
+
   //check against the available languages
   vm.lang = vm.availableLangs.indexOf(vm.lang)>-1 ? vm.lang : 'en';
 
