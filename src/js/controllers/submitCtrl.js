@@ -1,8 +1,5 @@
 app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', 'urls', function ($http, $scope, initialJSON, urls) {
   var vm = this;
-  //grab the relevant key in the corresponding language
-  $scope.master.loc = $scope.master.textData.submitYourGame;
-  $scope.master.desc = $scope.master.textData.submitInfo;
 
   vm.tagValReg = /.*#.+/i;
   vm.game = {
