@@ -6,7 +6,7 @@ curl -L https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLj
 NEW_FILE=`cat /tmp/initialJSON.json`
 if [ "$NEW_FILE" != "$OLD_FILE" ]; then
   echo "Changes have been made to initialJSON.json => pushing changes…"
-  cp /tmp/initialJSON.json
+  cp /tmp/initialJSON.json .
   git add .
   git commit --amend --no-edit
   git push -f
