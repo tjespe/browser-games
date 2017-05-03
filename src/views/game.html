@@ -17,11 +17,11 @@
 
         <div class="com-container flex">
           <div style="flex:1;">
-            <button ng-disabled="ifDisabled()" ng-class="{ disabled:ifDisabled() }" class="like" ng-click="g.rate(detail.id, 'like')" style="background-color:#3a3a3a;"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+            <button ng-disabled="ifDisabled()" ng-class="{ disabled:ifDisabled() }" class="like" ng-click="g.rate(detail.id, 'like')"><span class="glyphicon glyphicon-thumbs-up"></span></button>
           </div>
           <div class="instructions" ng-bind="detail.likes+' likes'"></div>
           <div style="flex:1;">
-            <button ng-disabled="ifDisabled()" ng-class="{ disabled:ifDisabled() }" class="like" ng-click="g.rate(detail.id, 'dislike')" style="background-color:#3a3a3a;"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+            <button ng-disabled="ifDisabled()" ng-class="{ disabled:ifDisabled() }" class="like" ng-click="g.rate(detail.id, 'dislike')"><span class="glyphicon glyphicon-thumbs-down"></span></button>
           </div>
         </div>
 

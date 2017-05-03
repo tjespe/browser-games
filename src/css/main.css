@@ -171,6 +171,10 @@ h3 {
   height: 40px;
 }
 
+.com-container>*>.like {
+  background-color:#3a3a3a;
+}
+
 @media (max-width: 400px) {
   .like {
     width: 50px;
