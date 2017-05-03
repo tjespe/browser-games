@@ -130,9 +130,9 @@ h3 {
 }
 
 .appIcon {
-  max-width: 50%;
-  width: 80px;
-  height: 80px;
+  width: 50%;
+  max-width: 80px;
+  min-height: 80px;
   border-radius: 15px;
   margin: 8px;
 }
@@ -741,7 +741,7 @@ img:before {
 }
 
 img.appIcon:before {
-  width: 66px;
+  width: 72px;
   height: 66px;
   padding: 5px;
   content: "\e060" " Couldn't load image of " attr(alt);
