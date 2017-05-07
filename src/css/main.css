@@ -123,6 +123,7 @@ h3 {
   width: 275px;
   flex-grow: 1;
   min-width: 25%;
+  overflow: hidden;
 }
 
 .container {
