@@ -705,22 +705,25 @@ input[type="checkbox"]:checked + label>span {
 
 input[type="checkbox"]:checked + label>span:before {
   content: "\e013";
+  font-size: smaller;
+  display: block;
+  margin-top: 1.5px;
 }
 
-.ad {
-  display: flex;
-  height: 259px;
-  border-radius: 0 0 15px 15px;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  flex-direction: column;
-}
+/*.ad {*/
+  /*display: flex;*/
+  /*height: 259px;*/
+  /*border-radius: 0 0 15px 15px;*/
+  /*overflow: hidden;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  /*align-content: center;*/
+  /*flex-direction: column;*/
+/*}*/
 
-.ad>* {
-  flex: 1;
-}
+/*.ad>* {*/
+  /*flex: 1;*/
+/*}*/
 
 select:focus, input:focus, textarea:focus {
   outline: 0;
