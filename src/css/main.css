@@ -235,9 +235,8 @@ h3 {
 }
 
 .mob-like>li {
-  width: 49% !important;
-  max-width: 49% !important;
-  min-width: 49% !important;
+  width: 50%;
+  margin:0;
   color: #000;
   float: left;
 }
@@ -666,6 +665,7 @@ button[disabled] {
 }
 
 embed {
+  background-color:#fff;
   max-width: 100%;
 }
 
