@@ -1,7 +1,5 @@
 app.filter('mouthWash', function() {
 
-  console.log("mouthWash.js loaded and executing");
-
   var badWords = [
     "fuck ",
     " fuck",
@@ -342,8 +340,8 @@ app.filter('mouthWash', function() {
   return function(input, scope) {
     if (!scope.master.verifiedUser && typeof input !== "undefined") {
       angular.forEach(badWords, function(word){
-        var regEx = new RegExp(word.split('').join('\\s*'), 'gi');
-        input = input.replace(regEx, "mooh");
+        let regex = new RegExp(word.split('').join('\\s*'), 'gi');
+        input = input.replace(regex, " mooh ");
       });
     }
     return input;
