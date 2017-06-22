@@ -13,3 +13,15 @@ if [ "$NEW_FILE" != "$OLD_FILE" ]; then
 else
   echo "No changes => not doing anything"
 fi
+
+OLD_SITEMAP=`cat sitemap.xml`
+NEW_SITEMAP=`curl -L https://script.google.com/macros/s/AKfycbxPwMbWpjuGXhg5btsB2-bWxLX7owBWZInnlIdmItbNDRWtiPU/exec`
+if [ "$OLD_SITEMAP" != "$NEW_SITEMAP" ]; then
+  echo "Changes have been made to the sitemap => pushing changes…"
+  echo $NEW_SITEMAP > sitemap.xml
+  git add .
+  git commit --amend --no-edit
+  git push -f
+else
+  echo "No changes to sitemap => not doing anything"
+fi
