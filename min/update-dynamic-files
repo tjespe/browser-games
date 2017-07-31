@@ -14,7 +14,7 @@ else
   echo "No changes => not doing anything"
 fi
 
-OLD_SITEMAP=`cat sitemap.xml`
+OLD_SITEMAP=`cat http://thorin-games.tk/min/sitemap.xml`
 NEW_SITEMAP=`curl -L https://script.google.com/macros/s/AKfycbxPwMbWpjuGXhg5btsB2-bWxLX7owBWZInnlIdmItbNDRWtiPU/exec`
 if [ "$OLD_SITEMAP" != "$NEW_SITEMAP" ]; then
   echo "Changes have been made to the sitemap => pushing changes…"
