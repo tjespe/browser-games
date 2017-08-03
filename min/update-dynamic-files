@@ -1,27 +1,30 @@
-#!/bin/sh
-cd "$(dirname "$0")"
-git pull
-OLD_FILE=`cat initialJSON.json`
-curl -L https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec > /tmp/initialJSON.json
-NEW_FILE=`cat /tmp/initialJSON.json`
-if [ "$NEW_FILE" != "$OLD_FILE" ]; then
-  echo "Changes have been made to initialJSON.json => pushing changes…"
-  cp /tmp/initialJSON.json .
-  git add .
-  git commit --amend --no-edit
-  git push -f
-else
-  echo "No changes => not doing anything"
-fi
+#!/usr/bin/env python
+import urllib2, os, sys
 
-OLD_SITEMAP=`curl -L http://thorin-games.tk/min/sitemap.xml`
-NEW_SITEMAP=`curl -L https://script.google.com/macros/s/AKfycbxPwMbWpjuGXhg5btsB2-bWxLX7owBWZInnlIdmItbNDRWtiPU/exec`
-if [ "$OLD_SITEMAP" != "$NEW_SITEMAP" ]; then
-  echo "Changes have been made to the sitemap => pushing changes…"
-  echo $NEW_SITEMAP > sitemap.xml
-  git add .
-  git commit --amend --no-edit
-  git push -f
-else
-  echo "No changes to sitemap => not doing anything"
-fi
+# Change directory to the location of this script
+os.chdir(os.path.dirname(sys.argv[0]))
+
+# Define an array of dynamic files that should be checked and possibly updated
+files = [{
+        "external": "https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec",
+        "destination": "initialJSON.json"
+    }, {
+        "external": "https://script.google.com/macros/s/AKfycbxPwMbWpjuGXhg5btsB2-bWxLX7owBWZInnlIdmItbNDRWtiPU/exec",
+        "destination": "sitemap.xml"
+    }]
+
+no_files_changed = True
+
+# Loop through the files and apply changes if changed
+for file in files:
+    external_data = urllib2.urlopen(file["external"]).read()
+    old_data = open(file["destination"], "r").read()
+    if external_data != old_data:
+        print(file["destination"]+" has changed => pushing changes")
+        open(file["destination"], "w").write(external_data)
+        os.system("git add "+file["destination"])
+        no_files_changed = False
+
+if not no_files_changed:
+    os.system("git commit --amend --no-edit")
+    os.system("git push -f")
