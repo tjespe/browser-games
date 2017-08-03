@@ -25,5 +25,6 @@ for file in files:
         os.system("git add "+file["destination"])
         no_files_changed = False
 
-os.system("git commit --amend --no-edit")
-os.system("git push -f")
+if not no_files_changed:
+    os.system("git commit --amend --no-edit")
+    os.system("git push -f")
