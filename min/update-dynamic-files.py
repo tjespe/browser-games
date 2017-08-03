@@ -17,7 +17,7 @@ no_files_changed = True
 
 # Loop through the files and apply changes if changed
 for file in files:
-    external_data = urllib2.open(file["external"]).read()
+    external_data = urllib2.urlopen(file["external"]).read()
     old_data = open(file["destination"], "r").read()
     if external_data != old_data:
         print(file["destination"]+" has changed => pushing changes")
