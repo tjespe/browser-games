@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import urllib2, os
+import urllib2, os, sys
 
 # Change directory to the location of this script
 os.chdir(os.path.dirname(sys.argv[0]))
