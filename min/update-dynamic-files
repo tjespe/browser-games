@@ -4,6 +4,9 @@ import urllib2, os, sys
 # Change directory to the location of this script
 os.chdir(os.path.dirname(sys.argv[0]))
 
+# Pull changes to lower the risk of conflicting commits
+os.system("git pull")
+
 # Define an array of dynamic files that should be checked and possibly updated
 files = [{
         "external": "https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec",
