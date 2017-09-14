@@ -89,7 +89,7 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
       $scope.commentForm.$setUntouched();
       try {localStorage.username = $scope.author} catch (e) { }
       disable = true, block = true;
-      $http.get(urls.comment+"?id="+$routeParams.id+"&com="+$scope.comment+"&author="+$scope.author).then((response)=>{
+      $http.get(urls.comment+"?id="+$routeParams.id+"&com="+encodeURIComponent($scope.comment)+"&author="+encodeURIComponent($scope.author)).then((response)=>{
         disable = false, block = false;
         $scope.detail.comments = response.data;
         $scope.comment = "";
