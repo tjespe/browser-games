@@ -7,15 +7,14 @@
 
     <div ng-hide="view.ifMobile && !g.gamedata.mobile" style="width:95%;height:85%;margin-left:auto;margin-top:auto;margin-bottom:15px;margin-right:auto;text-align:center" id="wrapper">
       <embed width="{{g.gamedata.width}}" height="{{g.gamedata.height}}" style="margin-left:auto;margin-right:auto;"></embed>
-      <ul class="nav nav-pills redirect" ng-if="g.showRedirectPrompt">
-        <li style="float:none"><a style="color:#fbfbfb" href="{{vm.gamedata.file}}" ng-bind="master.textData.redirectNotice"></a></li>
-      </ul>
     </div>
 
     <div class="game-sec flex" ng-class="{ noMargin:view.ifMobile }">
       <div style="flex:1;"></div>
 
       <div class="comments">
+        <div class="com-container flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="master.textData.redirectNotice"></a></div>
+
         <div class="com-container flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
 
         <div class="com-container flex">

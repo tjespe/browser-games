@@ -223,6 +223,14 @@ h3 {
   font-size: small;
 }
 
+.redirect-notice>a {
+  color: white;
+}
+
+.redirect-notice>a:hover {
+  color: #ccc;
+}
+
 .trans, #games, .games-wrapper {
   background-color: transparent;
   border: 0px;
