@@ -89,5 +89,6 @@
   "xFrameInfo": "El marco esta vacío? Si esta así, pues el dueño del contenido en que usted ha vinculado rechaza marcar el contenido. En este caso, no se puede agregar el juego a Thorin-games.",
   "yourComment": "Tu comentario",
   "yourMail": "tu@ejemplo.com",
-  "yourNick": "Tu apodo"
+  "yourNick": "Tu apodo",
+  "redirectNotice": "El juego no se puede jugar aquí. Haga clic aquí para ser redirigido"
 }

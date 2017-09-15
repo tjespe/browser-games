@@ -90,5 +90,6 @@
     "401-content": "Serveren kunne ikke bekrefte at du er autorisert til å få tilgang til det forespurte innholdet. Enten oppga du feil passord, eller så forstår ikke nettleseren din hvordan denne informasjonen skal oppgis. Om et \u00f8yeblikk blir du sendt til forsiden",
     "403-header": "Du er visst p\u00e5 villspor",
     "403-content": "Du har ikke tilgang til dette innholdet. Om et \u00f8yeblikk blir du sendt til forsiden",
-    "search": "Søk"
+    "search": "Søk",
+    "redirectNotice": "Dette spillet kan ikke spilles her. Trykk her for å bli videresendt til riktig side"
 }

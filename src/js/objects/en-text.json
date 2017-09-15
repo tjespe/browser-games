@@ -84,5 +84,6 @@
   "xFrameInfo": "Is the frame blank? If so, the owner of the content you have linked is denying framing of the content. In that case, you can not add the game to Thorin-Games.",
   "yourComment": "Your comment",
   "yourMail": "you@example.com",
-  "yourNick": "Your nick"
+  "yourNick": "Your nick",
+  "redirectNotice": "This game can not be played here. Click here to be redirected"
 }
