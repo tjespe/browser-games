@@ -2,50 +2,46 @@
   <a class="back-arrow" href ng-click="g.goBack()"><span class="glyphicon glyphicon-arrow-left"></span></a>
 </div>
 
-<div style="height:100%; width:100%;display:table; margin:0 auto;margin-top: 15px;">
-  <div style="vertical-align:middle; display:table-cell;">
+<div style="display:flex;flex-direction:column;margin-top:15px">
+  <div ng-hide="view.ifMobile && !g.gamedata.mobile" id="wrapper">
+    <embed width="{{g.gamedata.width}}" height="{{g.gamedata.height}}"></embed>
+  </div>
 
-    <div ng-hide="view.ifMobile && !g.gamedata.mobile" style="width:95%;height:85%;margin-left:auto;margin-top:auto;margin-bottom:15px;margin-right:auto;text-align:center" id="wrapper">
-      <embed width="{{g.gamedata.width}}" height="{{g.gamedata.height}}" style="margin-left:auto;margin-right:auto;"></embed>
-    </div>
+  <div class="game-sec flex" ng-class="{ noMargin:view.ifMobile }">
+    <div style="flex:1;"></div>
 
-    <div class="game-sec flex" ng-class="{ noMargin:view.ifMobile }">
-      <div style="flex:1;"></div>
+    <div class="comments">
+      <div class="com-container flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="master.textData.redirectNotice"></a></div>
 
-      <div class="comments">
-        <div class="com-container flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="master.textData.redirectNotice"></a></div>
+      <div class="com-container flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
 
-        <div class="com-container flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
-
-        <div class="com-container flex">
-          <div style="flex:1;">
-            <button ng-disabled="g.ifDisabled()" ng-class="{ disabled:g.ifDisabled() }" class="like" ng-click="g.rate(g.gamedata.id, 'like')"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-          </div>
-          <div class="instructions" ng-bind="g.gamedata.likes+' likes'"></div>
-          <div style="flex:1;">
-            <button ng-disabled="g.ifDisabled()" ng-class="{ disabled:g.ifDisabled() }" class="like" ng-click="g.rate(g.gamedata.id, 'dislike')"><span class="glyphicon glyphicon-thumbs-down"></span></button>
-          </div>
+      <div class="com-container flex">
+        <div style="flex:1;">
+          <button ng-disabled="g.ifDisabled()" ng-class="{ disabled:g.ifDisabled() }" class="like" ng-click="g.rate(g.gamedata.id, 'like')"><span class="glyphicon glyphicon-thumbs-up"></span></button>
         </div>
-
-        <div ng-repeat="com in g.gamedata.comments track by $index" class="com-container" ng-if="master.mlcLoaded">
-          <div class="com" ng-bind="::com.com | mouthWash:this"></div>
-          <div class="com-author" ng-bind="::com.author | mouthWash:this"></div>
-          <div class="com-date" ng-bind="com.date | chatTime:this"></div>
+        <div class="instructions" ng-bind="g.gamedata.likes+' likes'"></div>
+        <div style="flex:1;">
+          <button ng-disabled="g.ifDisabled()" ng-class="{ disabled:g.ifDisabled() }" class="like" ng-click="g.rate(g.gamedata.id, 'dislike')"><span class="glyphicon glyphicon-thumbs-down"></span></button>
         </div>
-
-        <form class="com-container flex" name="commentForm" style="align-items:stretch;">
-          <div style="flex:3;">
-            <textarea type="text" name="comment" class="com new-com-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
-            <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="new-com-field" style="max-width:84%;" placeholder="{{master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
-          </div>
-          <div style="flex:1;display:flex" class="send-message">
-            <a ng-class="{ disabled:g.ifDisabled() }" class="glyphicon glyphicon-send" ng-click="g.submit()"></a>
-          </div>
-        </form>
       </div>
 
-      <div style="flex:1;"></div>
+      <div ng-repeat="com in g.gamedata.comments track by $index" class="com-container" ng-if="master.mlcLoaded">
+        <div class="com" ng-bind="::com.com | mouthWash:this"></div>
+        <div class="com-author" ng-bind="::com.author | mouthWash:this"></div>
+        <div class="com-date" ng-bind="com.date | chatTime:this"></div>
+      </div>
+
+      <form class="com-container flex" name="commentForm" style="align-items:stretch;">
+        <div style="flex:3;">
+          <textarea type="text" name="comment" class="com new-com-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
+          <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="new-com-field" style="max-width:84%;" placeholder="{{master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
+        </div>
+        <div style="flex:1;display:flex" class="send-message">
+          <a ng-class="{ disabled:g.ifDisabled() }" class="glyphicon glyphicon-send" ng-click="g.submit()"></a>
+        </div>
+      </form>
     </div>
 
+    <div style="flex:1;"></div>
   </div>
 </div>

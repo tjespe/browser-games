@@ -194,6 +194,16 @@ h3 {
   color: initial !important;
 }
 
+#wrapper {
+  width: 95%;
+  height: 85%;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: 15px;
+  margin-right: auto;
+  text-align: center;
+}
+
 .instructions {
   word-wrap: break-word;
   flex: 4;
