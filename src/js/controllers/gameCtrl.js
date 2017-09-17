@@ -89,7 +89,6 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
       disable = true, block = true;
       $http.get(urls.comment+"?id="+$routeParams.id+"&com="+encodeURIComponent(vm.comment)+"&author="+encodeURIComponent(vm.author)).then((response)=>{
         disable = false, block = false;
-        vm.gamedata.comments = response.data;
         vm.comment = "";
         vm.refresh();
       }).catch(()=>{
