@@ -10,7 +10,7 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'init
     'es': "Aqui se encuentra todos nuestros juegos con la etiqueta \""+vm.tag+"\" Ordenado por popularidad"
   };
   $scope.master.desc = vm.description[$scope.master.lang];
-  vm.games = vm.tag in $scope.master.categoryGames ? vm.games = $scope.master.categoryGames[vm.tag] : [];
+  vm.games = vm.tag in $scope.master.categories ? vm.games = $scope.master.categories[vm.tag] : [];
 
   // Get the amount of matching games from the server
   $lhttp.get(urls.countGames+'?tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass, 800).then(function (data) {
@@ -33,7 +33,7 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'init
       $lhttp.get(url, 1500).then(function(data){
         Array.prototype.push.apply(vm.games, data.data);
         block = false;
-        $scope.master.categoryGames[vm.tag] = vm.games;
+        $scope.master.categories[vm.tag] = vm.games;
       });
     }
   };

@@ -91,5 +91,6 @@
     "403-header": "Du er visst p\u00e5 villspor",
     "403-content": "Du har ikke tilgang til dette innholdet. Om et \u00f8yeblikk blir du sendt til forsiden",
     "search": "Søk",
-    "redirectNotice": "Dette spillet kan ikke spilles her. Trykk her for å bli videresendt til riktig side"
+    "redirectNotice": "Dette spillet kan ikke spilles her. Trykk her for å bli videresendt til riktig side",
+    "locChangeAlert": "Vennligst ikke forlat siden før serveren har svart"
 }
