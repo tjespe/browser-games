@@ -9,13 +9,13 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
   var vp = 'src/views/';
 
   $routeProvider
-    .when('/', {
-      templateUrl: vp+'home.html'
-    })
-  .when('/tag/:category', {
-    templateUrl: vp+'category.html',
+  .when('/', {
+    templateUrl: vp+'home.html',
     controller:'categoryCtrl',
     controllerAs:'cat'
+  })
+  .when('/tag/:category', {
+    templateUrl: vp+'category.html',
   })
   .when('/search/:category', {
     templateUrl: vp+'category.html',

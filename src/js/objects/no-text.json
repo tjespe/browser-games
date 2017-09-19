@@ -1,4 +1,5 @@
 {
+    "title": "Thorin-Games — Den beste siden på internett for å spille Flash og HTML5 spill",
     "intro": "Velkommen til Thorin-Games sin nettside. Her kan du finne nesten 2000 spill, sortert etter bl.a. kategori og hvor godt likt de er.",
     "home": "Hjem",
     "about": "Om oss",
@@ -92,5 +93,6 @@
     "403-content": "Du har ikke tilgang til dette innholdet. Om et \u00f8yeblikk blir du sendt til forsiden",
     "search": "Søk",
     "redirectNotice": "Dette spillet kan ikke spilles her. Trykk her for å bli videresendt til riktig side",
-    "locChangeAlert": "Vennligst ikke forlat siden før serveren har svart"
+    "locChangeAlert": "Vennligst ikke forlat siden før serveren har svart",
+    "categoryDescription": "Her kan du finne alle våre spill med taggen \"{{tag}}\" sortert etter popularitet"
 }

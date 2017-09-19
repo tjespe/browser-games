@@ -1,44 +1,43 @@
 app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'initialJSON', '$lhttp', function ($http, $routeParams, $scope, urls, initialJSON, $lhttp) {
-  let vm = this, block = false;
-  vm.tag = $routeParams.category;
-  vm.amount = 1;
+  // Set important variables
+  let vm = this, request_in_progress = false;
+  vm.tag = $routeParams.category || "/";
+  vm.max_amount = 1;
   vm.noGames = false;
-  $scope.master.loc = "Thorin-Games — "+vm.tag;
-  vm.description = {
-    'en': "Here you can find all our games with the tag "+vm.tag+" sorted by popularity",
-    'no': "Her kan du finne alle våre spill med taggen \""+vm.tag+"\" sortert etter popularitet",
-    'es': "Aqui se encuentra todos nuestros juegos con la etiqueta \""+vm.tag+"\" Ordenado por popularidad"
-  };
-  $scope.master.desc = vm.description[$scope.master.lang];
-  vm.games = vm.tag in $scope.master.categories ? vm.games = $scope.master.categories[vm.tag] : [];
+  // Set title and description of page
+  $scope.master.loc = "Thorin-Games — "+(vm.tag !== "/" ? vm.tag : $scope.master.textData.title);
+  $scope.master.desc = vm.tag !== "/" ? $scope.master.textData.categoryDescription.replace("{{tag}}", vm.tag) : $scope.master.textData.intro;
+  // Load games from memory if they exist there
+  vm.games = vm.tag in $scope.master.games ? vm.games = $scope.master.games[vm.tag] : [];
 
   // Get the amount of matching games from the server
-  $lhttp.get(urls.countGames+'?tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass, 800).then(function (data) {
-    vm.amount = Number(data);
+  $lhttp.get(urls.countGames+'?d='+Date.now()+(vm.tag !== "/" ? '&tag='+vm.tag : "")+'&pass='+initialJSON.pass, 800).then(function (data) {
+    vm.max_amount = Number(data);
     let str = $scope.master.desc;
     // Add the number of games to the description
-    let query = ' '+$scope.master.textData.games;
-    $scope.master.desc = str.substring(0, str.indexOf(query)) + ' ' + data + str.substring(str.indexOf(query));
+    if (vm.tag !== "/") {
+      let query = ' '+$scope.master.textData.games;
+      $scope.master.desc = str.substring(0, str.indexOf(query)) + ' ' + data + str.substring(str.indexOf(query));
+    }
     // Request games from the server
-    vm.amount > 18 ? vm.requestGames(18) : vm.requestGames(vm.amount);
-    if (vm.amount==0) vm.noGames = true;
+    vm.max_amount > 18 ? vm.requestGames(18) : vm.requestGames(vm.max_amount);
+    if (vm.max_amount==0) vm.noGames = true;
   });
 
-  vm.requestGames = function (x) {
-    if (!block && !vm.allGamesAreDisplayed()) {
-      block = true;
-      let from = vm.games.length, to = from + x;
-      if (from+x > vm.amount) x = vm.amount - (from+x);
-      let url = urls.getGames+'?from='+from+'&amount='+x+'&tag='+vm.tag+'&d='+Date.now()+'&pass='+initialJSON.pass;
+  // Get matching games from the server
+  vm.requestGames = (amount)=>{
+    if (!request_in_progress && !vm.allGamesAreDisplayed()) {
+      request_in_progress = true;
+      let from = vm.games.length, to = from + amount;
+      if (from+amount > vm.max_amount) amount = vm.max_amount - (from+amount);
+      let url = urls.getGames+'?from='+from+'&amount='+amount+(vm.tag !== "/" ? '&tag='+vm.tag : "")+'&d='+Date.now()+'&pass='+initialJSON.pass;
       $lhttp.get(url, 1500).then(function(data){
         Array.prototype.push.apply(vm.games, data.data);
-        block = false;
-        $scope.master.categories[vm.tag] = vm.games;
+        request_in_progress = false;
+        $scope.master.games[vm.tag] = vm.games;
       });
     }
   };
 
-  vm.allGamesAreDisplayed = ()=>{
-    return vm.games.length >= vm.amount;
-  }
+  vm.allGamesAreDisplayed = ()=>(vm.games.length >= vm.max_amount);
 }]);

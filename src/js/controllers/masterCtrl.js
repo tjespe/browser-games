@@ -1,73 +1,41 @@
 app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', '$scope', '$location', '$timeout', '$injector', '$q', 'initialJSON', '$lhttp', 'urls', function($http, $window, $rootScope, $routeParams, $scope, $location, $timeout, $injector, $q, initialJSON, $lhttp, urls) {
   let vm = this;
-  let game_load_limit = 18;
-  let block_fetching_more_games = false;
-  vm.disabled = false;
+  vm.request_in_progress = false;
   vm.query = "";
   vm.lang = (window.navigator.language).replace(/-.+/g,"");
   vm.availableLangs = ['en','es','no'];
   vm.desc = "";
-  vm.games = [];
-  vm.categories = {};
+  vm.games = {};
   vm.routeChanged = false;
   vm.verifiedUser = false;
   vm.tags = [{"name":"Puzzle","amount":470},{"name":"Action","amount":334},{"name":"Jigsaw Puzzles","amount":315},{"name":"Shooting","amount":256},{"name":"HTML5","amount":210},{"name":"Racing","amount":202},{"name":"Adventure","amount":196}];
   vm.textData = {};
-  vm.tagLimit = 8;
   vm.showAllTags = false;
 
   // Check if language is requested in url
-  if((window.location.href).includes("lang=")){
+  if ((window.location.href).includes("lang=")){
     vm.lang=(window.location.href).replace(/.+lang=/,"");
   }
-
   // Rewrite Norwegian Bokmål and Norwegian Nynorsk to Norwegian
   vm.lang = (vm.lang == 'nb' || vm.lang == 'nn') ? 'no' : vm.lang;
-
-  //check against the available languages
+  // Check if preferred language is available
   vm.lang = vm.availableLangs.indexOf(vm.lang)>-1 ? vm.lang : 'en';
-
-  vm.allGamesAreDisplayed = function () {
-    if (vm.games.length < game_load_limit) return false;
-    return true;
-  };
 
   initialJSON.json.then(function (data) {
     Array.prototype.push.apply(vm.games, data.initialGames);
     vm.verifiedUser = data.verifiedUser;
-     = data.topTags;
-    game_load_limit = data.count;
+    vm.tags = data.topTags;
   });
 
-  vm.requestGames = function (amount) {
-    if (!block_fetching_more_games && !vm.allGamesAreDisplayed()) {
-      block_fetching_more_games = true;
-      var fr = vm.games.length;
-      var url = urls.getGames+'?from='+fr+'&amount='+amount+'&d='+Math.floor(Date.now()/(3.6*10e5));
-      if (initialJSON.pass.length>0) url += '&pass='+initialJSON.pass;
-      $lhttp.get(url, 1400)
-        .then(function(data){
-          Array.prototype.push.apply(vm.games, data.data);
-          block_fetching_more_games = false;
-        })
-      .catch(function (data, status) {
-        console.log(data, status);
-        block_fetching_more_games = false;
-      });
-    }
-  };
-
   vm.rate = function (game_id, url) { /* This function is loaded later */ };
-
   vm.like = function (game_id) {
     vm.rate(game_id, "like", 1);
   };
-
   vm.dislike = function (game_id) {
     vm.rate(game_id, "dislike", -1);
   };
 
-  vm.ifDisabled = ()=>vm.disabled;
+  vm.ifDisabled = ()=>vm.request_in_progress;
 
   vm.css = ""; // This string is bound to a <style>-element in the HTML
   vm.mlcLoaded = false; // This variable tells whether or not the mail list system is loaded
@@ -97,5 +65,4 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
     console.log(data, status);
     confirm('Unable to load textdata, do you want to reload the page?') ? location.reload(true) : null;
   });
-
 }]);
