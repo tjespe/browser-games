@@ -1,17 +1,8 @@
-console.log("Executing scroll.js");
 app.directive("scroll", ['$window', 'initialJSON', function ($window, initialJSON) {
-  console.log("Executing scroll directive");
   return function(scope) {
-
-    var scrollHandler = function () {
+    let scrollHandler = function () {
       initialJSON.jquery.then(function () {
-        if ($('#games').length && this.pageYOffset >= $('#games').outerHeight() - 2000) {
-          if (scope.cat !== undefined) {
-            scope.cat.requestGames(18);
-          } else {
-            scope.master.requestGames(18);
-          }
-        }
+        if ($('#games').length && this.pageYOffset >= $('#games').outerHeight() - 2000) scope.cat.requestGames(18);
       });
     };
 
