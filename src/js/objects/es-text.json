@@ -90,5 +90,6 @@
   "yourComment": "Tu comentario",
   "yourMail": "tu@ejemplo.com",
   "yourNick": "Tu apodo",
-  "redirectNotice": "El juego no se puede jugar aquí. Haga clic aquí para ser redirigido"
+  "redirectNotice": "El juego no se puede jugar aquí. Haga clic aquí para ser redirigido",
+  "locChangeAlert": "Por favor no salgas de la pagina hasta que el servidor responda"
 }

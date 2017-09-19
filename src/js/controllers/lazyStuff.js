@@ -35,7 +35,7 @@ app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routePar
       mas.showAllTags = !mas.showAllTags;
     };
     mas.search = function () {
-      $location.path('tag/'+mas.otag);
+      $location.path('tag/'+mas.query);
       mas.collapseTags();
     };
     mas.goTo = function (url) {

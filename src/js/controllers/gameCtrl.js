@@ -1,6 +1,7 @@
 app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interval', '$timeout', '$q', '$window', '$rootScope', '$location', 'initialJSON', '$lhttp', 'urls', function($scope, $routeParams, $http, $sce, $interval, $timeout, $q, $window, $rootScope, $location, initialJSON, $lhttp, urls) {
   let vm = this;
-  let block = false, disable = false, fails = 0, canceler = $q.defer(), downloadTime;
+  let block_auto_refresh = false, request_in_progress = false, refresh_fails = 0, downloadTime;
+  vm.ifDisabled = ()=>request_in_progress;
   if (location.protocol == 'https:') location.protocol = "http:";
   let url = urls.getGames+'?id='+$routeParams.id+'&pass='+initialJSON.pass;
   vm.gamedata = {};
@@ -22,57 +23,47 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
   });
 
   vm.rate = function (x, action) {
-    disable = true; block = true;
-
-    let request = $http({
-      method:"get",
-      url: urls.rating+'?action='+action+"&id="+x
-    });
-
-    request.success(function(response){
-      disable = false; block = false;
+    request_in_progress = true; block_auto_refresh = true;
+    $http.get(urls.rating+'?action='+action+"&id="+x).then(function(response){
+      request_in_progress = false; block_auto_refresh = false;
       vm.gamedata.likes = response.data;
     });
   };
 
   vm.refresh = function() {
-    disable = true, block = true;
+    request_in_progress = true, block_auto_refresh = true;
     $http.get(urls.getGames+'?id='+$routeParams.id+'&pass='+initialJSON.pass+'&dt='+Date.now()).success(function(data) {
       vm.gamedata.comments = data.comments;
       downloadTime = Date.now();
-      disable = false, block = false;
+      request_in_progress = false, block_auto_refresh = false;
     });
   };
 
-  vm.ifAnyChanges = function() {
-    if (!block && !disable) {
-      block = true;
+  function check_if_changed() {
+    if (!block_auto_refresh && !request_in_progress) {
+      block_auto_refresh = true;
       let url = urls.checkIfChanged+"?d="+Math.floor(Date.now()/10000)+"&id="+$routeParams.id+"&coms="+vm.gamedata.comments.length, start = Date.now();
-      let request = $http({
-        method: "get",
-        url: url,
-        timeout: canceler.promise
-      });
-      request.success(function(data) {
-        block = false, fails = 0;
-        if (JSON.parse(data)) vm.refresh();
+      let request = $http.get(url);
+      request.then(function(response) {
+        block_auto_refresh = false, refresh_fails = 0;
+        if (JSON.parse(response.data)) vm.refresh();
         for (let i = 0; i < vm.gamedata.comments.length; i++) {
           if (!vm.gamedata.comments[i].date) vm.gamedata.comments[i].date = 1459870175813;
           vm.gamedata.comments[i].date += (Date.now()-start)/1000;
         }
       });
-      request.error(function(data, status){
-        block = false;
+      request.catch(function(){
+        block_auto_refresh = false;
       });
-    } else if (fails>8) {
+    } else if (refresh_fails>8) {
       vm.gamedata.comments = [{"com":"Lost contact with server - trying to reconnect","author":"..."}];
-      block = false;
-      fails++;
+      block_auto_refresh = false;
+      refresh_fails++;
     } else {
-      fails++;
+      refresh_fails++;
     }
   };
-  let promise = $interval(vm.ifAnyChanges, 2400);
+  let promise = $interval(check_if_changed, 2400);
 
   $scope.$on('$destroy', ()=>$interval.cancel(promise));
 
@@ -82,33 +73,20 @@ app.controller('gameCtrl', ['$scope', '$routeParams', '$http', '$sce', '$interva
     vm.author = "";
   }
   vm.comment = "";
-  vm.submit = ()=>{
-    if (!disable && vm.comment.length > 0 && vm.author.length > 0) {
+  vm.submit_comment = ()=>{
+    if (!request_in_progress && vm.comment.length > 0 && vm.author.length > 0) {
       $scope.commentForm.$setUntouched();
       try {localStorage.username = vm.author} catch (e) { }
-      disable = true, block = true;
+      request_in_progress = true, block_auto_refresh = true;
       $http.get(urls.comment+"?id="+$routeParams.id+"&com="+encodeURIComponent(vm.comment)+"&author="+encodeURIComponent(vm.author)).then((response)=>{
-        disable = false, block = false;
+        request_in_progress = false, block_auto_refresh = false;
         vm.comment = "";
         vm.refresh();
       }).catch(()=>{
         alert("Your message was not submitted.\nPlease try again.");
-        block = false, disable = false;
+        block_auto_refresh = false, request_in_progress = false;
       });
     } else $scope.commentForm.$setTouched();
-  };
-
-  vm.ifDisabled = ()=>disable;
-
-  $rootScope.$on('$locationChangeStart', function(event) {
-    if (disable) {
-      event.preventDefault();
-      alert($scope.master.locChangeAlert);
-    }
-  });
-
-  $window.onbeforeunload = function () {
-    if (disable) return locChangeAlert;
   };
 
   vm.goBack = function () {

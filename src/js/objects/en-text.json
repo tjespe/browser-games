@@ -85,5 +85,6 @@
   "yourComment": "Your comment",
   "yourMail": "you@example.com",
   "yourNick": "Your nick",
-  "redirectNotice": "This game can not be played here. Click here to be redirected"
+  "redirectNotice": "This game can not be played here. Click here to be redirected",
+  "locChangeAlert": "Please don't leave the page until the server has responded"
 }
