@@ -1,10 +1,8 @@
-console.log("Executing mailListCtrl.js");
 app.controller('mailListCtrl', ['$http', '$timeout', 'local', '$scope', 'urls', function ($http, $timeout, local, $scope, urls) {
   var vm = this;
   vm.mail = "";
   var nextMonth = Date.now()+(1000*60*60*24*30);
   var date = new Date(nextMonth);
-  console.log("Executing mailListCtrl controller");
 
   vm.init = function () {
     var hasVisited = local.get('hasVisitedThorinEarlier');

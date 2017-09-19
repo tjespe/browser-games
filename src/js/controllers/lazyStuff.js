@@ -1,4 +1,4 @@
-app.controller("lazyStuff", ['$http', '$scope', 'local', '$location', '$routeParams', '$lhttp', 'urls', function ($http, $scope, local, $location, $routeParams, $lhttp, urls) {
+app.controller("lazyStuff", ['$http', '$scope', '$location', '$routeParams', '$lhttp', 'urls', function ($http, $scope, $location, $routeParams, $lhttp, urls) {
   let vm = this;
 
   $scope.master.rate = function (game_id, action, i) {

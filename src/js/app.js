@@ -5,9 +5,9 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
       'self',
       'https://script.google.com'
   ]);
+  $sceProvider.enabled(true);
 
-  var vp = 'src/views/';
-
+  let vp = 'src/views/';
   $routeProvider
   .when('/', {
     templateUrl: vp+'home.html'
@@ -32,9 +32,6 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
   .when('/contact', {
     templateUrl: vp+'contact.html'
   })
-  .when('/game/:id', {
-    redirectTo: '/id/:id'
-  })
   .when('/tag', {
     redirectTo: '/'
   })
@@ -47,8 +44,6 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
   .otherwise({
     templateUrl: vp+'error.html'
   });
-  $sceProvider.enabled(true);
-
   $locationProvider.html5Mode(true);
 
   // Enable lazy-loading of controllers and other angular components
@@ -60,14 +55,14 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
     $provide.service( name, constructor );
     return( this );
   };
-  app.factory = function( name, factory ) {
+  /*app.factory = function( name, factory ) {
     $provide.factory( name, factory );
     return( this );
   };
   app.value = function( name, value ) {
     $provide.value( name, value );
     return( this );
-  };
+  };*/
   app.directive = function( name, factory ) {
     $compileProvider.directive( name, factory );
     return( this );
@@ -80,14 +75,11 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
 
 // This service is for loading important data on page load as well as loading the jQuery library asynchronously
 app.service('initialJSON', ['$http', '$lhttp', 'urls', function ($http, $lhttp, urls) {
-  var vm = this;
+  let vm = this;
   vm.pass = encodeURIComponent(window.location.search.slice(1)+window.location.hash.slice(1));
-
-  let initialJsonUrl = vm.pass.length ? "https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec?pass=" + vm.pass : urls.initialJSON;
-  vm.json = $lhttp.get(initialJsonUrl);
+  vm.json = $lhttp.get(vm.pass.length ? "https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec?pass=" + vm.pass : urls.initialJSON);
 
   vm.jquery = $lhttp.get("https://code.jquery.com/jquery-2.2.3.min.js", 0);
-
   vm.jquery.then(function (data) {
     eval(data);
   });
@@ -100,8 +92,7 @@ app.directive('script', function() {
     scope: false,
     link: function(scope, elem, attr) {
       if (attr.type === 'text/javascript-lazy') {
-        var code = elem[0].text;
-        eval(code);
+        eval(elem[0].text);
       }
     }
   };
