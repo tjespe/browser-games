@@ -10,17 +10,13 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
 
   $routeProvider
   .when('/', {
-    templateUrl: vp+'home.html',
-    controller:'categoryCtrl',
-    controllerAs:'cat'
+    templateUrl: vp+'home.html'
   })
   .when('/tag/:category', {
-    templateUrl: vp+'category.html',
+    templateUrl: vp+'category.html'
   })
   .when('/search/:category', {
-    templateUrl: vp+'category.html',
-    controller:'categoryCtrl',
-    controllerAs:'cat'
+    templateUrl: vp+'category.html'
   })
   .when('/id/:id', {
     controller: 'gameCtrl',
