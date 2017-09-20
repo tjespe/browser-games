@@ -29,5 +29,5 @@ for file in files:
         no_files_changed = False
 
 if not no_files_changed:
-    os.system("git commit --amend --no-edit")
-    os.system("git push -f")
+    os.system("git commit -m 'Updated dynamic files'")
+    os.system("git push")
