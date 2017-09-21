@@ -1,4 +1,4 @@
-<view-wrapper ng-controller="categoryCtrl as cat">
+<view-wrapper ng-controller="categoryCtrl as cat" scroll>
   <div ng-if="cat.noGames" class="content top-padded">
     <span ng-bind="::master.txtData.noGamesWithTag"></span> {{cat.tag}}!
   </div>
