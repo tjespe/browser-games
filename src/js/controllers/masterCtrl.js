@@ -12,6 +12,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.textData = {};
   vm.showAllTags = false;
   vm.ifMobile = 'ontouchstart' in window;
+  vm.mobileGamesOnly = vm.ifMobile;
   vm.showHeader = ()=>!window.location.href.includes('/id/');
 
   // Check if language is requested in url

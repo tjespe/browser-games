@@ -55,6 +55,9 @@ app.controller("lazyStuff", ['$http', '$scope', '$location', '$routeParams', '$h
     }
     return false;
   };
+  mas.toggleMobileGames = function () {
+    mas.mobileGamesOnly = !mas.mobileGamesOnly;
+  };
 
   for (var attrname in mas) {
     try {
