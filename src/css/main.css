@@ -622,7 +622,7 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
   border-radius: 100%;
   border: 1px solid #999;
   box-shadow: 0 0 7px rgba(0,0,0,0.6);
-  transition: margin 0.2s ease-in-out, background 0.2s ease-in-out;
+  transition: margin 0.2s ease-in-out, background 0.2s ease-in-out, width 0.2s ease-in-out;
 }
 
 .toggler.active {
@@ -631,6 +631,15 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
 
 .toggler.active:before {
   margin: 0 0 0 30px;
+}
+
+.toggler:active:before {
+  width: 25px;
+  margin: 0;
+}
+
+.toggler.active:active:before {
+  margin: 0 0 0 25px;
 }
 
 @media (min-width: 277px) {
