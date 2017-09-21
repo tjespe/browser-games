@@ -48,7 +48,7 @@
     "submitInfo": "Dersom du \u00f8nsker det kan du legge til et spill til nettsiden. Alt du m\u00e5 gj\u00f8re er \u00e5 fylle ut skjemaet nedenfor og trykke legg til.",
     "games": "spill",
     "gameTitle": "Spillets tittel",
-    "gameUrl": "Url til spillet (starter ofte med \/\/ og slutter ofte med .swf)",
+    "gameUrl": "Url til spillet (starter ofte med http:// og slutter ofte med .swf)",
     "thumbUrl": "Url til ikon. Ikke velg bilder st\u00f8rre enn 100 kB",
     "gameDesc": "Beskrivelse av spillet",
     "gameHeight": "Spillets h\u00f8yde (valgfritt)",

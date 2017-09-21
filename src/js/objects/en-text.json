@@ -38,7 +38,7 @@
   "gameTagsErr": "Please use the #-symbol to enter at least 1 valid tag",
   "gameTitle": "The name of the game",
   "gameTitleErr": "Please enter something as a name for the game",
-  "gameUrl": "Url to the game (often starts with // and ends with .swf)",
+  "gameUrl": "Url to the game (often starts with http:// and ends with .swf)",
   "gameUrlErr": "Please enter a valid url for the game",
   "gameWidth": "Width of the game (optional)",
   "goHome": "Go to front page",

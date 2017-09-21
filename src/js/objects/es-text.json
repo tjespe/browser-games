@@ -38,7 +38,7 @@
   "gameTagsErr": "Por favor usa el #-symbol para escribir al menos 1 etiqueta válida",
   "gameTitle": "El nombre del juego",
   "gameTitleErr": "Por favor escribe algo para el nombre del juego",
-  "gameUrl": "La Url para el juego (Empieza a menudo con // y termina con .swf)",
+  "gameUrl": "La Url para el juego (Empieza a menudo con http:// y termina con .swf)",
   "gameUrlErr": "Por favor escribe una Url válida para el juego",
   "gameWidth": "Anchura del juego (opcional)",
   "goHome": "Ir a la página inicial",
