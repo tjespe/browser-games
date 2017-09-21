@@ -35,8 +35,8 @@
 
       <form class="com-container flex" name="commentForm" style="align-items:stretch;">
         <div style="flex:3;">
-          <textarea type="text" name="comment" class="com new-com-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{::master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
-          <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="new-com-field" style="max-width:84%;" placeholder="{{::master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
+          <textarea type="text" name="comment" class="com comment-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{::master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
+          <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="comment-field" style="max-width:84%;" placeholder="{{::master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
         </div>
         <div style="flex:1;display:flex" class="send-message">
           <a ng-class="{ disabled:g.ifDisabled() }" class="glyphicon glyphicon-send" ng-click="g.submit_comment()"></a>
