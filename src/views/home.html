@@ -1,7 +1,7 @@
 <div class="content top-padded subheader" ng-if="master.lazyModulesLoaded">
   <div ng-controller="homeCtrl as h">
-    <span ng-bind="master.textData.intro"></span><br><br>
-    <span><span ng-bind="master.textData.amountOfGames"></span>: <span ng-if="master.lazyModulesLoaded">{{h.len}}</span><span ng-if="!master.lazyModulesLoaded">...</span></span>
+    <span ng-bind="::master.textData.intro"></span><br><br>
+    <span><span ng-bind="::master.textData.amountOfGames"></span>: <span ng-if="master.lazyModulesLoaded">{{h.len}}</span><span ng-if="!master.lazyModulesLoaded">...</span></span>
   </div>
 </div>
 

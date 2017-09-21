@@ -19,23 +19,23 @@
 
 <script type="text/javascript-lazy">
   app.controller('contactCtrl', ['$scope', function ($scope) {
-    $scope.master.loc = "Thorin-Games — "+$scope.master.textData.contactHead;
-    $scope.master.desc = $scope.master.textData.contactCont;
+    $scope.master.loc = "Thorin-Games — "+$scope.::master.txtData.contactHead;
+    $scope.master.desc = $scope.::master.txtData.contactCont;
   }]);
 </script>
 
 <div class="content" ng-controller="contactCtrl">
-  <h2 ng-bind="master.textData.contactHead"></h2>
-  <div ng-bind="master.textData.contactCont"></div>
+  <h2 ng-bind="::master.txtData.contactHead"></h2>
+  <div ng-bind="::master.txtData.contactCont"></div>
   <div class="flexbox">
     <div class="game-info-container">
-      <div class="title" ng-bind="master.textData.supportStaff"></div>
-      <div class="description" ng-bind="master.textData.supportStaffDesc"></div>
+      <div class="title" ng-bind="::master.txtData.supportStaff"></div>
+      <div class="description" ng-bind="::master.txtData.supportStaffDesc"></div>
       <div class="link"><a href="mailto:support@thorin-games.tk">support@thorin-games.tk</a></div>
     </div>
     <div class="game-info-container">
-      <div class="title" ng-bind="master.textData.bugReport"></div>
-      <div class="description" ng-bind="master.textData.bugReportDesc"></div>
+      <div class="title" ng-bind="::master.txtData.bugReport"></div>
+      <div class="description" ng-bind="::master.txtData.bugReportDesc"></div>
       <div class="link"><a href="mailto:bugreport@thorin-games.tk">bugreport@thorin-games.tk</a></div>
     </div>
   </div>

@@ -6,8 +6,8 @@
 </script>
 
 <div class="content error-content" ng-controller="errorCtrl as error">
-  <h2><span ng-bind="error.errorCode"></span> — <span ng-bind="master.textData[error.errorCode+'-header']"></span></h2>
+  <h2><span ng-bind="error.errorCode"></span> — <span ng-bind="::master.txtData[error.errorCode+'-header']"></span></h2>
   <img src="/src/img/redirect.gif" class="col-xs-12" style="max-width:600px;float:none;margin:auto;"><br>
-  <span><span ng-bind="master.textData[error.errorCode+'-content']"></span>:</span> <a href="/">thorin-games.tk</a>
+  <span><span ng-bind="::master.txtData[error.errorCode+'-content']"></span>:</span> <a href="/">thorin-games.tk</a>
   <lazy ng-if="master.lazyModulesLoaded"><lazy ng-controller="404Ctrl as 404"></lazy></lazy>
 </div>
