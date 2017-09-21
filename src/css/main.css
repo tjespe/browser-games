@@ -110,7 +110,7 @@ a {
 }
 
 .nav-pills>li.active {
-  display: block !important;
+  display: block;
 }
 
 h3 {
@@ -589,7 +589,7 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
 }
 
 .toggle-mobile {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
   width: 115px;
