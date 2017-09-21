@@ -1,10 +1,10 @@
-app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interval", "$timeout", "$window", "$location", "initialJSON", "$lhttp", "urls", function ($scope, $routeParams, $http, $sce, $interval, $timeout, $window, $location, initialJSON, $lhttp, urls) {
+app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interval", "$timeout", "$window", "$location", "initialJSON", "$httpx", "urls", function ($scope, $routeParams, $http, $sce, $interval, $timeout, $window, $location, initialJSON, $httpx, urls) {
   let vm = this;
   let block_auto_refresh = false, request_in_progress = false, refresh_fails = 0;
   if (location.protocol === "https:") { location.protocol = "http:"; }
   vm.gamedata = {};
   vm.showRedirectPrompt = false;
-  $lhttp.get(urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass, 1500).then((data)=>{
+  $httpx.get(urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass, {lifetime: 60*60*1000}).then((data)=>{
     vm.gamedata = data;
     $scope.master.loc = "Thorin-Games — "+data.title;
     $scope.master.desc = data.description;

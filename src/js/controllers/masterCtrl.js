@@ -1,4 +1,4 @@
-app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', '$scope', '$location', '$timeout', '$injector', '$q', 'initialJSON', '$lhttp', 'urls', function($http, $window, $rootScope, $routeParams, $scope, $location, $timeout, $injector, $q, initialJSON, $lhttp, urls) {
+app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', '$scope', '$location', '$timeout', '$injector', '$q', 'initialJSON', '$httpx', 'urls', function($http, $window, $rootScope, $routeParams, $scope, $location, $timeout, $injector, $q, initialJSON, $httpx, urls) {
   let vm = this;
   vm.request_in_progress = false;
   vm.query = "";
@@ -49,19 +49,19 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   });
 
   // Load less important javascript code
-  $lhttp.get('min/lazy-js.min.js', 2000).then(function (data) {
+  $httpx.get('min/lazy-js.min.js', {lifetime: 1000*60*60}).then(function (data) {
     eval(data);
     vm.lazyModulesLoaded = true;
   });
 
   if (!/bot|curl|spider|google|twitter^$/i.test(navigator.userAgent)) {
-    $lhttp.get('src/js/scripts/analytics.js', 0).then((data)=>{
+    $httpx.get('src/js/scripts/analytics.js', {lifetime: Infinity}).then((data)=>{
       eval(data);
     });
   }
 
   // Load text-data
-  $lhttp.get('src/js/objects/'+vm.lang+'-text.json').then((data)=>{
+  $httpx.get('src/js/objects/'+vm.lang+'-text.json').then((data)=>{
     vm.textData = data;
   }).catch((data, status)=>{
     console.log(data, status);

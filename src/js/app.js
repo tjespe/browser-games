@@ -35,12 +35,6 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
   .when('/tag', {
     redirectTo: '/'
   })
-  .when('/403', {
-    templateUrl: vp+'error.html'
-  })
-  .when('/401', {
-    templateUrl: vp+'error.html'
-  })
   .otherwise({
     templateUrl: vp+'error.html'
   });
@@ -74,12 +68,12 @@ app.config(["$routeProvider", "$sceProvider", "$locationProvider", '$controllerP
 }]);
 
 // This service is for loading important data on page load as well as loading the jQuery library asynchronously
-app.service('initialJSON', ['$http', '$lhttp', 'urls', function ($http, $lhttp, urls) {
+app.service('initialJSON', ['$http', '$httpx', 'urls', function ($http, $httpx, urls) {
   let vm = this;
   vm.pass = encodeURIComponent(window.location.search.slice(1)+window.location.hash.slice(1));
-  vm.json = $lhttp.get(vm.pass.length ? "https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec?pass=" + vm.pass : urls.initialJSON);
+  vm.json = $httpx.get(vm.pass.length ? "https://script.google.com/macros/s/AKfycbzEVUBnYRqGOFS6309I9Oe748omXUWLjpDScrjYatNvxKuL6BEU/exec?pass=" + vm.pass : urls.initialJSON, {lifetime: 1000*60*60});
 
-  vm.jquery = $lhttp.get("https://code.jquery.com/jquery-2.2.3.min.js", 0);
+  vm.jquery = $httpx.get("https://code.jquery.com/jquery-2.2.3.min.js", {lifetime: Infinity});
   vm.jquery.then(function (data) {
     eval(data);
   });
@@ -109,70 +103,3 @@ app.value('urls', {
   'subscribe': '', // This script isn't made yet
   'initialJSON': '/min/initialJSON.json'
 });
-
-// This service creates a universal way of loading cacheable resources to improve speed
-app.service('$lhttp', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
-  let vm = this;
-  vm.ldbOn = true;
-
-  // Attempt to use indexedDB instead of localStorage:
-  try {
-    !function(){function e(t,o){return n?void(n.transaction("s").objectStore("s").get(t).onsuccess=function(e){var t=e.target.result&&e.target.result.v||null;o(t)}):void setTimeout(function(){e(t,o)},100)}var t=window.indexedDB||window.mozIndexedDB||window.webkitIndexedDB||window.msIndexedDB;if(!t)return void console.error("indexDB not supported");var n,o={k:"",v:""},r=t.open("d2",1);r.onsuccess=function(e){n=this.result},r.onerror=function(e){console.error("indexedDB request error"),console.log(e)},r.onupgradeneeded=function(e){n=null;var t=e.target.result.createObjectStore("s",{keyPath:"k"});t.transaction.oncomplete=function(e){n=e.target.db}},window.ldb={get:e,set:function(e,t){o.k=e,o.v=t,n.transaction("s","readwrite").objectStore("s").put(o)}}}();
-  } catch (e) {
-    console.warn("Unable to use lbd, using localStorage instead. Error:",e);
-    vm.ldbOn = false;
-  }
-
-  // This is the function that should be called from controllers to load resources
-  vm.get = (url, timeout, options, extra_promise)=>{
-    let deferred = $q.defer();
-    if (typeof options === 'undefined') options = {};
-    options.timeout = deferred.promise;
-    let request = $http.get(url, options);
-    request.success(function (data) {
-      // Try to save the data locally
-      try {
-        vm.ldbOn ? ldb.set(url, JSON.stringify(data)) : localStorage[url] = JSON.stringify(data);
-      } catch (e) {console.log("Couldn't save "+url+"-data to storage. Error:",e)}
-      deferred.resolve(data);
-    });
-    request.error(function (data, status) {
-      // Try to get the data from a local storage
-      try {
-        ldb.get(url, (data)=>{
-          if (data !== null) {
-            deferred.resolve(JSON.parse(data));
-          } else {
-            typeof localStorage[url] !== "undefined" ? deferred.resolve(JSON.parse(localStorage[url])) : deferred.reject("ERROR");
-          }
-        });
-      } catch (e) {
-        try {
-          typeof localStorage[url] !== "undefined" ? deferred.resolve(JSON.parse(localStorage[url])) : deferred.reject("ERROR");
-        } catch (e) {
-          deferred.reject("ERROR");
-        }
-      }
-    });
-    // If a timeout is set when calling the function and the data exists locally, the request will be cancelled after the given timeout
-    if (typeof timeout !== "undefined") {
-      $timeout(function () {
-        if (vm.ldbOn) {
-          ldb.get(url, (data)=>{
-            data !== null ? deferred.resolve(JSON.parse(data)) : "";
-          });
-        } else if (typeof Storage !== "undefined" && url in localStorage) {
-          deferred.resolve(JSON.parse(localStorage[url]));
-        }
-      }, timeout);
-    }
-    // If a extra promise is set when calling the function, the request will be cancelled when the promise is cancelled
-    if (typeof extra_promise !== "undefined") {
-      extra_promise.catch(()=>{
-        deferred.reject("Canceled");
-      });
-    }
-
-    return deferred.promise;
-  };
-}]);

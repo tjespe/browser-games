@@ -1,4 +1,4 @@
-app.controller("lazyStuff", ['$http', '$scope', '$location', '$routeParams', '$lhttp', 'urls', function ($http, $scope, $location, $routeParams, $lhttp, urls) {
+app.controller("lazyStuff", ['$http', '$scope', '$location', '$routeParams', '$httpx', 'urls', function ($http, $scope, $location, $routeParams, $httpx, urls) {
   let vm = this;
 
   $scope.master.rate = function (game_id, action, i) {
@@ -69,7 +69,7 @@ app.controller("lazyStuff", ['$http', '$scope', '$location', '$routeParams', '$l
   getCss('listGroups', 'custom_bootstrap/list-groups.min.css')
 
   function getCss(x, url) {
-    $lhttp.get("/src/css/"+url, 0).then(function (data) {
+    $httpx.get("/src/css/"+url, {lifetime: 1000*60*60*24*7}).then(function (data) {
       $scope.master.css += data;
     })
   }

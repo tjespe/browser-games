@@ -1,4 +1,4 @@
-app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'initialJSON', '$lhttp', function ($http, $routeParams, $scope, urls, initialJSON, $lhttp) {
+app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'initialJSON', '$httpx', function ($http, $routeParams, $scope, urls, initialJSON, $httpx) {
   // Set important variables
   let vm = this, request_in_progress = false;
   vm.tag = $routeParams.category || "/";
@@ -11,7 +11,7 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'init
   vm.games = vm.tag in $scope.master.games ? vm.games = $scope.master.games[vm.tag] : [];
 
   // Get the amount of matching games from the server
-  $lhttp.get(urls.countGames+'?d='+Date.now()+(vm.tag !== "/" ? '&tag='+vm.tag : "")+'&pass='+initialJSON.pass, 800).then(function (data) {
+  $httpx.get(urls.countGames+'?d='+Date.now()+(vm.tag !== "/" ? '&tag='+vm.tag : "")+'&pass='+initialJSON.pass).then(function (data) {
     vm.max_amount = Number(data);
     let str = $scope.master.desc;
     // Add the number of games to the description
@@ -31,7 +31,7 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'init
       let from = vm.games.length, to = from + amount;
       if (from+amount > vm.max_amount) amount = vm.max_amount - (from+amount);
       let url = urls.getGames+'?from='+from+'&amount='+amount+(vm.tag !== "/" ? '&tag='+vm.tag : "")+'&d='+Date.now()+'&pass='+initialJSON.pass;
-      $lhttp.get(url, 1500).then(function(data){
+      $httpx.get(url, {lifetime:1000*60*30}).then(function(data){
         Array.prototype.push.apply(vm.games, data.data);
         request_in_progress = false;
         $scope.master.games[vm.tag] = vm.games;

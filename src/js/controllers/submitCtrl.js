@@ -99,7 +99,6 @@ app.controller('submitCtrl', ['$http', '$scope', 'initialJSON', 'urls', function
   }
 
   vm.init = function () {
-    console.log('initialized');
     initialJSON.jquery.then(function () {
       $( "textarea" ).each(function( index ) {
         $(this).attr('rows', Math.ceil($(this).attr('placeholder').length*(430/56)/$(this).width()));
