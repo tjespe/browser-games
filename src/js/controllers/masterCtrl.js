@@ -11,6 +11,8 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   vm.tags = [{"name":"Puzzle","amount":470},{"name":"Action","amount":334},{"name":"Jigsaw Puzzles","amount":315},{"name":"Shooting","amount":256},{"name":"HTML5","amount":210},{"name":"Racing","amount":202},{"name":"Adventure","amount":196}];
   vm.textData = {};
   vm.showAllTags = false;
+  vm.ifMobile = 'ontouchstart' in window;
+  vm.showHeader = ()=>!window.location.href.includes('/id/');
 
   // Check if language is requested in url
   if ((window.location.href).includes("lang=")){

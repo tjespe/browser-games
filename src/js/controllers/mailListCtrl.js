@@ -7,7 +7,7 @@ app.controller('mailListCtrl', ['$http', '$timeout', 'local', '$scope', 'urls', 
   vm.init = function () {
     var hasVisited = local.get('hasVisitedThorinEarlier');
     var alreadyPrompted = local.keyExist('thorinMailPrompted') && local.get('thorinMailPrompted');
-    if (hasVisited && !alreadyPrompted && !$scope.view.ifMobile) {
+    if (hasVisited && !alreadyPrompted && !$scope.master.ifMobile) {
       $timeout(function () {
         $('.lightbox').css('display', 'flex !important');
         $timeout(function () {

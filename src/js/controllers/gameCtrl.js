@@ -1,12 +1,10 @@
 app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interval", "$timeout", "$window", "$location", "initialJSON", "$lhttp", "urls", function ($scope, $routeParams, $http, $sce, $interval, $timeout, $window, $location, initialJSON, $lhttp, urls) {
   let vm = this;
   let block_auto_refresh = false, request_in_progress = false, refresh_fails = 0;
-  vm.ifDisabled = ()=>request_in_progress;
   if (location.protocol === "https:") { location.protocol = "http:"; }
-  let data_url = urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass;
   vm.gamedata = {};
   vm.showRedirectPrompt = false;
-  $lhttp.get(data_url, 1500).then(function (data) {
+  $lhttp.get(urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass, 1500).then((data)=>{
     vm.gamedata = data;
     $scope.master.loc = "Thorin-Games — "+data.title;
     $scope.master.desc = data.description;
@@ -20,17 +18,15 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     resizeEmbed();
   });
 
-  vm.rate = function (x, action) {
+  vm.rate = (x, action)=>{
     request_in_progress = true; block_auto_refresh = true;
-    $http.get(urls.rating+"?action="+action+"&id="+x).then(function (response){
+    $http.get(urls.rating+"?action="+action+"&id="+x).then((response)=>{
       request_in_progress = false; block_auto_refresh = false;
       vm.gamedata.likes = response.data;
     });
   };
 
-  let promise = $interval(check_if_changed, 2400);
-
-  $scope.$on("$destroy", ()=>$interval.cancel(promise));
+  vm.ifDisabled = ()=>request_in_progress;
 
   // Using try/catch because so many errors can occur, but it does not really affect user experience
   try {
@@ -66,12 +62,12 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
       let maxChars = $("textarea").width()*(30/270);
       let newLines = Math.floor($("textarea").val().length/maxChars) + 1;
       $("textarea").css("height", newLines*initialHeight+"px");
-      if (!$scope.view.ifMobile) {
+      if (!$scope.master.ifMobile) {
         $("html, body").animate({scrollTop: $(document).height()});
       }
     });
 
-    $( window ).resize(resizeEmbed);
+    $(window).resize(resizeEmbed);
   };
 
   function resizeEmbed() {
@@ -86,17 +82,17 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
 
   function refresh_comments() {
     request_in_progress = true; block_auto_refresh = true;
-    $http.get(urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass+"&dt="+Date.now()).success(function (data) {
+    $http.get(urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass+"&dt="+Date.now()).success((data)=>{
       vm.gamedata.comments = data.comments;
       request_in_progress = false; block_auto_refresh = false;
     });
   }
 
-  function check_if_changed() {
+  let promise = $interval(()=>{
     if (!block_auto_refresh && !request_in_progress) {
       block_auto_refresh = true;
       let status_data_url = urls.checkIfChanged+"?d="+Math.floor(Date.now()/10000)+"&id="+$routeParams.id+"&coms="+vm.gamedata.comments.length, start = Date.now();
-      $http.get(status_data_url).then(function (response) {
+      $http.get(status_data_url).then((response)=>{
         block_auto_refresh = false; refresh_fails = 0;
         if (JSON.parse(response.data)) { refresh_comments(); }
         for (let i = 0; i < vm.gamedata.comments.length; i++) {
@@ -113,9 +109,10 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     } else {
       refresh_fails++;
     }
-  }
+  }, 2400);
+  $scope.$on("$destroy", ()=>$interval.cancel(promise));
 
   initialJSON.jquery.then(vm.jquery);
 
-  vm.ifSpace = ()=>window.innerWidth-document.querySelector("embed").clientWidth>140 && !$scope.view.ifMobile;
+  vm.ifSpace = ()=>window.innerWidth-document.querySelector("embed").clientWidth>140 && !$scope.master.ifMobile;
 }]);

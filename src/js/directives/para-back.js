@@ -19,7 +19,7 @@ app.directive("paraBack", ['$window', function ($window) {
       }
     };
 
-    if (!scope.view.ifMobile) {
+    if (!scope.master.ifMobile) {
       angular.element($window).on('scroll', scrollHandler);
 
       scope.$on('$destroy', function () {

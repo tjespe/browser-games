@@ -39,7 +39,7 @@ import json, sys
 data = json.load(sys.stdin)
 print "Python script running, data:"
 if "errors" in data:
-  print "### COMPILATION FAILED WITH ERRORS"
+  print "@@@### COMPILATION FAILED WITH ERRORS ###@@@"
   for err in data["errors"]:
     file = sys.argv[int(err["file"].replace("Input_", "")) + 1]
     print "File: %s, %d:%d" % (file, err["lineno"], err["charno"])
@@ -49,7 +49,7 @@ if "errors" in data:
   print "\nBuild failed.\n"
 
 else:
-  print "### COMPILATION COMPLETED"
+  print "Compilation completed"
   print "Original size: %db, gziped: %db" % (data["statistics"]["originalSize"], data["statistics"]["originalGzipSize"])
   print "Compressed size: %db, gziped: %db" % (data["statistics"]["compressedSize"], data["statistics"]["compressedGzipSize"])
   print "Compression rate: %.2f" % (float(data["statistics"]["compressedSize"]) / int(data["statistics"]["originalSize"]))

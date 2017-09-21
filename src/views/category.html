@@ -1,6 +1,6 @@
 <view-wrapper ng-controller="categoryCtrl as cat" scroll>
   <div ng-if="cat.noGames" class="content top-padded">
-    <span ng-bind="::master.txtData.noGamesWithTag"></span> {{cat.tag}}!
+    <span ng-bind="::master.textData.noGamesWithTag"></span> {{cat.tag}}!
   </div>
 
   <div class="content games-wrapper">
@@ -13,7 +13,7 @@
         </div>
         <div class="app-desc" ng-click="master.goToGame(game.id)">{{::game.description}}</div>
         <div class="like-panel-wrapper">
-          <div class="like-panel" ng-if="!view.ifMobile">
+          <div class="like-panel" ng-if="!master.ifMobile">
             <div>
               <button class="like" ng-disabled="master.ifDisabled()" ng-class="{ disabled:master.ifDisabled() }" ng-click="master.like(game.id)"><span class="glyphicon glyphicon-thumbs-up"></span></button>
             </div>
@@ -21,7 +21,7 @@
               <button class="like" ng-disabled="master.ifDisabled()" ng-class="{ disabled:master.ifDisabled() }" ng-click="master.dislike(game.id)"><span class="glyphicon glyphicon-thumbs-down"></span></button>
             </div>
           </div>
-          <ul class="nav nav-pills mob-like" ng-if="view.ifMobile">
+          <ul class="nav nav-pills mob-like" ng-if="master.ifMobile">
             <li ng-class="{ disabled:master.ifDisabled() }"><a ng-click="master.like(game.id)"><span class="glyphicon glyphicon-thumbs-up"></span></a></li>
             <li ng-class="{ disabled:master.ifDisabled() }"><a ng-click="master.dislike(game.id)"><span class="glyphicon glyphicon-thumbs-down"></span></a></li>
           </ul>

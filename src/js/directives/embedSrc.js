@@ -1,5 +1,4 @@
 app.directive('embedSrc', function () {
-  console.log("embedSrc.js loaded and executing");
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {

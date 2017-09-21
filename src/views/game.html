@@ -3,15 +3,15 @@
 </div>
 
 <div style="display:flex;flex-direction:column;margin-top:15px">
-  <div ng-hide="view.ifMobile && !g.gamedata.mobile" id="wrapper">
+  <div ng-hide="master.ifMobile && !g.gamedata.mobile" id="wrapper">
     <embed width="{{g.gamedata.width}}" height="{{g.gamedata.height}}"></embed>
   </div>
 
-  <div class="game-sec flex" ng-class="{ noMargin:view.ifMobile }">
+  <div class="game-sec flex" ng-class="{ noMargin:master.ifMobile }">
     <div style="flex:1;"></div>
 
     <div class="comments">
-      <div class="com-container flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="::master.txtData.redirectNotice"></a></div>
+      <div class="com-container flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="::master.textData.redirectNotice"></a></div>
 
       <div class="com-container flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
 
@@ -33,8 +33,8 @@
 
       <form class="com-container flex" name="commentForm" style="align-items:stretch;">
         <div style="flex:3;">
-          <textarea type="text" name="comment" class="com new-com-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{::master.txtData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
-          <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="new-com-field" style="max-width:84%;" placeholder="{{::master.txtData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
+          <textarea type="text" name="comment" class="com new-com-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{::master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
+          <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="new-com-field" style="max-width:84%;" placeholder="{{::master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
         </div>
         <div style="flex:1;display:flex" class="send-message">
           <a ng-class="{ disabled:g.ifDisabled() }" class="glyphicon glyphicon-send" ng-click="g.submit_comment()"></a>
