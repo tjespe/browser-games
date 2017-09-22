@@ -29,5 +29,9 @@ for file in files:
         no_files_changed = False
 
 if not no_files_changed:
-    os.system("git commit -m 'Updated dynamic files'")
-    os.system("git push")
+    if os.popen('git log -1 | grep "^    " |grep -o "\(\S\+\s\?\)\+$"').read() == "Updated dynamic files\n":
+        os.system("git commit --amend --no-edit")
+        os.system("git push -f")
+    else:
+        os.system("git commit -m 'Updated dynamic files'")
+        os.system("git push")
