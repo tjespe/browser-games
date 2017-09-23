@@ -230,8 +230,8 @@ img.app-icon:before {
 }
 
 .action-panel>* {
-  padding: 10px;
-  border-radius: 20px;
+  padding: 12.5px;
+  border-radius: 30px;
   margin: 0 5px 10px;
 }
 .action-panel>*:hover {
