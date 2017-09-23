@@ -22,7 +22,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     request_in_progress = true; block_auto_refresh = true;
     $http.get(urls.rating+"?action="+action+"&id="+x).then((response)=>{
       request_in_progress = false; block_auto_refresh = false;
-      vm.gamedata.likes = response.data;
+      vm.gamedata.likes = response.data.data;
     });
   };
 
