@@ -4,8 +4,10 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
   if (location.protocol === "https:") { location.protocol = "http:"; }
   vm.gamedata = {};
   vm.showRedirectPrompt = false;
+  vm.loading = true;
   $httpx.get(urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass, {lifetime: 60*60*1000}).then((data)=>{
     vm.gamedata = data;
+    vm.loading = false;
     $scope.master.loc = "Thorin-Games — "+data.title;
     $scope.master.desc = data.description;
     let game_url = $sce.trustAsResourceUrl(vm.gamedata.file);
@@ -58,7 +60,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
   vm.jquery = ()=>{
     let initialHeight = $("textarea").outerHeight();
     $("textarea").keyup(()=>{
-      $("a.glyphicon[type=submit]").css("line-height", ($("form.com-container>div").height() - 24)+"px");
+      $("a.glyphicon[type=submit]").css("line-height", ($(".comments>form>div").height() - 24)+"px");
       let maxChars = $("textarea").width()*(30/270);
       let newLines = Math.floor($("textarea").val().length/maxChars) + 1;
       $("textarea").css("height", newLines*initialHeight+"px");

@@ -433,7 +433,12 @@ embed {
   padding: 10px;
 }
 
-.com-container {
+.comments>form>div>textarea {
+  transition: height 0.5s ease-in-out;
+  resize: none;
+}
+
+.comments>* {
   background-color: #4a4a4a;
   padding: 13px;
   border-radius: 10px;
@@ -663,11 +668,6 @@ input[type="checkbox"]:checked + label>span:before {
 
 #menu {
   overflow: auto;
-}
-
-form.com-container>div>textarea {
-  transition: height 0.5s ease-in-out;
-  resize: none;
 }*/
 
 /* Cookie-box CSS */

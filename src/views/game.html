@@ -11,25 +11,27 @@
     <div style="flex:1;"></div>
 
     <div class="comments">
-      <div class="com-container" ng-if="!g.gamedata.mobile && master.ifMobile" ng-bind="::master.textData.mobWarning"></div>
+      <div ng-if="g.loading"><img style="filter:invert()" src="/src/img/loading.svg" class="loader"></div>
 
-      <div class="com-container flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="::master.textData.redirectNotice"></a></div>
+      <div ng-if="!g.gamedata.mobile && master.ifMobile && !g.loading" ng-bind="::master.textData.mobWarning"></div>
 
-      <div class="com-container flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
+      <div class="flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="::master.textData.redirectNotice"></a></div>
 
-      <div class="com-container flex like-panel">
+      <div class="flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
+
+      <div class="flex like-panel" ng-if="!g.loading">
         <div class="glyphicon glyphicon-thumbs-up" ng-class="{ disabled:g.ifDisabled() }" ng-click="g.rate(g.gamedata.id, 'like')"></div>
         <div class="instructions" ng-bind="g.gamedata.likes+' likes'"></div>
         <div class="glyphicon glyphicon-thumbs-down" ng-class="{ disabled:g.ifDisabled() }" ng-click="g.rate(g.gamedata.id, 'dislike')"></div>
       </div>
 
-      <div ng-repeat="com in g.gamedata.comments track by $index" class="com-container" ng-if="master.mlcLoaded">
-        <div class="com" ng-bind="::com.com | mouthWash:this"></div>
-        <div class="com-author" ng-bind="::com.author | mouthWash:this"></div>
+      <div ng-repeat="com in g.gamedata.comments track by $index" ng-if="master.mlcLoaded">
+        <div class="com" ng-bind="com.com | mouthWash:this"></div>
+        <div class="com-author" ng-bind="com.author | mouthWash:this"></div>
         <div class="com-date" ng-bind="com.date | chatTime:this"></div>
       </div>
 
-      <form class="com-container flex" name="commentForm" style="align-items:stretch;">
+      <form class="flex" name="commentForm" style="align-items:stretch;">
         <div style="flex:3;">
           <textarea type="text" name="comment" class="com comment-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{::master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
           <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="comment-field" style="max-width:84%;" placeholder="{{::master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
