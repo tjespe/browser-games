@@ -130,7 +130,8 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
   width: 275px;
   flex-grow: 1;
   min-width: 25%;
-  overflow: hidden;
+  position: relative;
+  height: 260px;
 }
 
 img:before {
@@ -212,16 +213,19 @@ img.app-icon:before {
 }
 
 .action-panel {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .action-panel>* {
-    padding: 10px;
-    background: #333;
-    color: #fff;
-    border-radius: 20px;
-    margin: 0 5px 10px;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  border-radius: 20px;
+  margin: 0 5px 10px;
 }
 
 /* Header CSS */
