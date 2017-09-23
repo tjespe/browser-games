@@ -403,7 +403,7 @@ h1 {
 }
 
 .show-all>li {
-  display: block !important;
+  display: block;
 }
 
 /* Game view CSS */
