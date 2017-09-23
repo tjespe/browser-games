@@ -222,10 +222,15 @@ img.app-icon:before {
 
 .action-panel>* {
   padding: 10px;
-  background: #333;
-  color: #fff;
   border-radius: 20px;
   margin: 0 5px 10px;
+}
+.action-panel>*:hover {
+    background: #eee;
+}
+.action-panel>*:active {
+    background: #333;
+    color: #fff;
 }
 
 /* Header CSS */
