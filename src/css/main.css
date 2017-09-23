@@ -402,12 +402,6 @@ h1 {
   }
 }
 
-@media (min-width: 1120px) {
-  .tag:nth-child(12) {
-    display: block;
-  }
-}
-
 .show-all>li {
   display: block !important;
 }
