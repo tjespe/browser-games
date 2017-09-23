@@ -123,6 +123,16 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
   border-radius: 15px;
 }
 
+.games-wrapper {
+  width: calc(80% + 15px);
+  max-width: 915px;
+}
+
+#games, .games-wrapper {
+  background-color: transparent;
+  border: 0px;
+}
+
 .game-info-container {
   margin: 5px;
   background-color: #fefefe;
@@ -190,7 +200,6 @@ img.app-icon:before {
   display: flex;
   flex-wrap: wrap;
   margin: -10px;
-  padding: 5px;
 }
 
 .title {
@@ -460,11 +469,6 @@ embed {
 
 .redirect-notice>a:hover {
   color: #ccc;
-}
-
-#games, .games-wrapper {
-  background-color: transparent;
-  border: 0px;
 }
 
 .comments {
