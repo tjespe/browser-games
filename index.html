@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="src/img/apple-touch-icon.png" />
   <style ng-bind="master.css"></style>
   <!--Important CSS:-->
-  <style>body{line-height: 1.42857143;background-color:#222;margin:0;font-family: ubuntu, Sans-Serif;text-align:center}*{box-sizing:border-box}a{text-decoration:none}ul{display:flex;flex-wrap:wrap;padding-left:0;margin:0}li{display:block;flex:1 1 auto}header{background: #FEFEFE; border: 1px solid #CCC; letter-spacing: 1px; height: 66px;}.nav-pills>li>a{color: #1a1a1a;padding:10px 15px;display:flex}.content{font-size: 18px; width: 80%; background: #FEFEFE; border: 1px solid #CCC; margin: 35px auto; padding: 30px 11px; max-width: 900px;border-radius: 15px;}li>a>.glyphicon{margin-right: 4px;}.no-c-change{padding:0!important}.search>a>input{max-width: 145px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; background: url(/src/img/search.png) 96% / 35px no-repeat}</style>
+  <style>body{line-height: 1.42857143;background-color:#222;margin:0;font-family: ubuntu, Sans-Serif;text-align:center}*{box-sizing:border-box}a{text-decoration:none}ul{display:flex;flex-wrap:wrap;padding-left:0;margin:0}li{display:block;flex:1 1 auto}header{background: #FEFEFE; border: 1px solid #CCC; letter-spacing: 1px; height: 66px;}.nav-pills>li>a{color: #1a1a1a;padding:10px 15px;display:flex}.content{font-size: 18px; width: 80%; background: #FEFEFE; border: 1px solid #CCC; margin: 35px auto; padding: 30px 11px; max-width: 900px;border-radius: 15px;}li>a>.glyphicon{margin-right: 4px;}.no-c-change{padding:0!important}.search>input{max-width: 145px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; background: url(/src/img/search.png) 96% / 35px no-repeat}</style>
   <base href="/">
 </head>
 <body para-back="src/img/background.jpg" ontouchstart class="fallback" style="background-image: url(src/img/background.jpg);">
@@ -41,7 +41,7 @@
       <li class="submit-g" ng-class="{ active: master.ifAtSubmit() }"><a ng-click="master.goTo('submit')"><span class="glyphicon glyphicon-plus"></span> <span ng-bind="master.textData.submitYourGame">Submit a game</span></a></li>
       <li class="toggle-mobile" ng-if="master.ifMobile" ng-click="master.toggleMobileGames()"><img ng-src="{{'src/img/desktop-icon.svg'}}"><div class="toggler" ng-class="{active: master.mobileGamesOnly}"></div><span class="glyphicon glyphicon-phone"></span></li>
       <li class="contact" ng-class="{ active: master.ifAt('/contact') }"><a ng-click="master.goTo('contact')"><span class="glyphicon glyphicon-earphone"></span> <span ng-bind="master.textData.contact">Contact</span></a></li>
-      <li class="search" ng-class="{ searching: alert(this) }"><a class="no-c-change"><input ng-model="master.query" placeholder="{{master.textData.search}}" ng-keyup="master.search()"></a></li>
+      <li class="search" ng-class="{ searching: alert(this) }"><input ng-model="master.query" placeholder="{{master.textData.search}}" ng-keyup="master.search()"></li>
       <li ng-class="{ active: master.tagIs(tag.name)}" ng-repeat="tag in master.tags" ng-if="tag.amount>13" class="tag"><a href ng-click="master.goTo('tag/'+tag.name)" ng-bind="::tag.name+' ('+tag.amount+')'"></a></li>
       <li><a href ng-click="master.toggleTags()" class="glyphicon glyphicon-option-horizontal"></span></a></li>
     </ul>

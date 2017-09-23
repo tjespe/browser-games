@@ -326,7 +326,7 @@ h1 {
   display: block;
 }
 
-.search>a>input {
+.search>input {
   max-width: 145px;
   min-width: 100%;
   padding: 10px 15px;
