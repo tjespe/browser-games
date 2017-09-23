@@ -716,21 +716,6 @@ form.com-container>div>textarea {
   border-radius: 15px 15px 0 0;
 }
 
-/*.ad {*/
-  /*display: flex;*/
-  /*height: 259px;*/
-  /*border-radius: 0 0 15px 15px;*/
-  /*overflow: hidden;*/
-  /*justify-content: center;*/
-  /*align-items: center;*/
-  /*align-content: center;*/
-  /*flex-direction: column;*/
-/*}*/
-
-/*.ad>* {*/
-  /*flex: 1;*/
-/*}*/
-
 /* Toggler button CSS */
 .toggler {
   background: #ddd;
