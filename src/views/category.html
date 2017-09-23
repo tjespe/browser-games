@@ -7,24 +7,15 @@
     <div id="games">
       <div ng-repeat="game in cat.games track by $index" class="game-info-container" ng-if="!!game.mobile || !master.mobileGamesOnly">
         <div class="title" ng-click="master.goToGame(game.id)"><img ng-src="{{::game.thumbnail}}">{{::game.title}}</div>
-        <div ng-click="master.goToGame(game.id)"><img height="80px" class="appIcon" ng-src="{{::game.thumbnail}}" alt="{{::game.title}}"></div>
+        <div ng-click="master.goToGame(game.id)"><img height="80px" class="app-icon" ng-src="{{::game.thumbnail}}" alt="{{::game.title}}"></div>
         <div ng-click="master.goToGame(game.id)">
           <span id="{{::game.id}}">{{game.likes}}</span> likes
         </div>
         <div class="app-desc" ng-click="master.goToGame(game.id)">{{::game.description}}</div>
-        <div class="like-panel-wrapper">
-          <div class="like-panel" ng-if="!master.ifMobile">
-            <div>
-              <button class="like" ng-disabled="master.ifDisabled()" ng-class="{ disabled:master.ifDisabled() }" ng-click="master.like(game.id)"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-            </div>
-            <div>
-              <button class="like" ng-disabled="master.ifDisabled()" ng-class="{ disabled:master.ifDisabled() }" ng-click="master.dislike(game.id)"><span class="glyphicon glyphicon-thumbs-down"></span></button>
-            </div>
-          </div>
-          <ul class="nav nav-pills mob-like" ng-if="master.ifMobile">
-            <li ng-class="{ disabled:master.ifDisabled() }"><a ng-click="master.like(game.id)"><span class="glyphicon glyphicon-thumbs-up"></span></a></li>
-            <li ng-class="{ disabled:master.ifDisabled() }"><a ng-click="master.dislike(game.id)"><span class="glyphicon glyphicon-thumbs-down"></span></a></li>
-          </ul>
+        <div class="action-panel">
+          <div class="glyphicon glyphicon-thumbs-up" ng-click="master.like(game.id)" ng-class="{ disabled:master.ifDisabled() }"></div>
+          <div class="glyphicon glyphicon-play" ng-click="master.goToGame(game.id)" ng-class="{ disabled:master.ifDisabled() }"></div>
+          <div class="glyphicon glyphicon-thumbs-down" ng-click="master.dislike(game.id)" ng-class="{ disabled:master.ifDisabled() }"></div>
         </div>
       </div>
       <div class="game-info-container" ng-hide="cat.allGamesAreDisplayed()">

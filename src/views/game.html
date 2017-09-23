@@ -17,14 +17,10 @@
 
       <div class="com-container flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
 
-      <div class="com-container flex">
-        <div style="flex:1;">
-          <button ng-disabled="g.ifDisabled()" ng-class="{ disabled:g.ifDisabled() }" class="like" ng-click="g.rate(g.gamedata.id, 'like')"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-        </div>
+      <div class="com-container flex like-panel">
+        <div class="glyphicon glyphicon-thumbs-up" ng-class="{ disabled:g.ifDisabled() }" ng-click="g.rate(g.gamedata.id, 'like')"></div>
         <div class="instructions" ng-bind="g.gamedata.likes+' likes'"></div>
-        <div style="flex:1;">
-          <button ng-disabled="g.ifDisabled()" ng-class="{ disabled:g.ifDisabled() }" class="like" ng-click="g.rate(g.gamedata.id, 'dislike')"><span class="glyphicon glyphicon-thumbs-down"></span></button>
-        </div>
+        <div class="glyphicon glyphicon-thumbs-down" ng-class="{ disabled:g.ifDisabled() }" ng-click="g.rate(g.gamedata.id, 'dislike')"></div>
       </div>
 
       <div ng-repeat="com in g.gamedata.comments track by $index" class="com-container" ng-if="master.mlcLoaded">

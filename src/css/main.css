@@ -133,18 +133,6 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
   overflow: hidden;
 }
 
-.like {
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #1a1a1a;
-  color: #fbfbfb;
-  border-radius: 100%;
-  border: none;
-  font-size: 22px;
-  width: 40px;
-  height: 40px;
-}
-
 img:before {
   display: block;
   position: absolute;
@@ -158,7 +146,7 @@ img:before {
   overflow: hidden;
 }
 
-img.appIcon:before {
+img.app-icon:before {
   width: 72px;
   height: 66px;
   padding: 5px;
@@ -172,23 +160,6 @@ img.appIcon:before {
   content: "\e060";
 }
 
-.mob-like {
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-}
-
-.mob-like>li {
-  width: 50%;
-  margin:0;
-  color: #000;
-  float: left;
-}
-
-.mob-like>li>a {
-  color: #000;
-}
-
 @keyframes spin{0%{transform:rotate(45deg)}17%{transform:rotate(300deg)}34%{transform:rotate(90deg)}51%{transform:rotate(450deg)}66%{transform:rotate(135deg)}83%{transform:rotate(495deg)}100%{transform:rotate(405deg)}}
 
 .loader {
@@ -197,7 +168,7 @@ img.appIcon:before {
   animation-iteration-count: infinite;
 }
 
-.appIcon {
+.app-icon {
   width: 50%;
   max-width: 80px;
   min-height: 80px;
@@ -205,25 +176,13 @@ img.appIcon:before {
   margin: 8px;
 }
 
-.app-desc, .like-panel {
+.app-desc {
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 24px;
+  margin-bottom: 17.5px;
   word-wrap: break-word;
   padding: 0 5px;
-}
-
-.like-panel-wrapper {
-  margin-right: -5px;
-}
-
-.like-panel {
-  display: flex;
-}
-
-.like-panel>div {
-  flex: 1;
 }
 
 #games {
@@ -250,6 +209,19 @@ img.appIcon:before {
   margin: 2px 5px;
   margin-top: -3px;
   border-radius: 4px;
+}
+
+.action-panel {
+    display: flex;
+    justify-content: space-around;
+}
+
+.action-panel>* {
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    border-radius: 20px;
+    margin: 0 5px 10px;
 }
 
 /* Header CSS */
@@ -423,25 +395,9 @@ h1 {
 }
 
 /* Game view CSS */
-.com-container>*>.like {
-  background-color:#3a3a3a;
-}
-
 embed {
   background-color:#fff;
   max-width: 100%;
-}
-
-@media (max-width: 400px) {
-  .like {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-  }
-
-  .like>span {
-    margin-left: -7px;
-  }
 }
 
 #wrapper {
@@ -457,6 +413,12 @@ embed {
 .instructions {
   word-wrap: break-word;
   flex: 4;
+}
+
+.like-panel>.glyphicon {
+    background: #666;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .com-container {
