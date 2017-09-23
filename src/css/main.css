@@ -611,7 +611,7 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
 
 .toggler {
   background: #ddd;
-  height: 24px;
+  height: 28px;
   width: 54px;
   border-radius: 20px;
   border: 1px solid #aaa;
@@ -621,9 +621,9 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
   display: block;
   background: #fff;
   content: " ";
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  border-radius: 15px;
   border: 1px solid #999;
   box-shadow: 0 0 7px rgba(0,0,0,0.6);
   transition: margin 0.2s ease-in-out, background 0.2s ease-in-out, width 0.2s ease-in-out;
@@ -634,16 +634,15 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
 }
 
 .toggler.active:before {
-  margin: 0 0 0 30px;
+  margin: 0 0 0 26px;
 }
 
 .toggler:active:before {
-  width: 25px;
-  margin: 0;
+  width: 29px;
 }
 
 .toggler.active:active:before {
-  margin: 0 0 0 25px;
+  margin: 0 0 0 21px;
 }
 
 @media (min-width: 277px) {
