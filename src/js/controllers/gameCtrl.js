@@ -1,16 +1,21 @@
 app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interval", "$timeout", "$window", "$location", "initialJSON", "$httpx", "urls", function ($scope, $routeParams, $http, $sce, $interval, $timeout, $window, $location, initialJSON, $httpx, urls) {
   let vm = this;
   let block_auto_refresh = false, request_in_progress = false, refresh_fails = 0;
+  // Switch to http if client is using https, because there is a high chance the game is hosted on a http server
   if (location.protocol === "https:") { location.protocol = "http:"; }
   vm.gamedata = {};
   vm.showRedirectPrompt = false;
   vm.loading = true;
+  // Fetch gamedata
   $httpx.get(urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass, {lifetime: 60*60*1000}).then((data)=>{
     vm.gamedata = data;
     vm.loading = false;
+    // Change title and description of page
     $scope.master.loc = "Thorin-Games — "+data.title;
     $scope.master.desc = data.description;
+    // Trust gamedata url
     let game_url = $sce.trustAsResourceUrl(vm.gamedata.file);
+    // Calculate width and height
     if (vm.gamedata.height === "n") { vm.gamedata.height = 0.75 * window.innerHeight; }
     if (vm.gamedata.height === "r" || vm.gamedata.width === "r") {
       vm.showRedirectPrompt = true;
@@ -20,6 +25,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     resizeEmbed();
   });
 
+  // Declare function to rate game (This should perhaps be merged with the master.rate function)
   vm.rate = (x, action)=>{
     request_in_progress = true; block_auto_refresh = true;
     $http.get(urls.rating+"?action="+action+"&id="+x).then((response)=>{
