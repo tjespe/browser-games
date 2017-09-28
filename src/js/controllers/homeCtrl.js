@@ -1,3 +1,4 @@
+// The only purpose of this controller is to give a description to the page when user is at home page
 app.controller('homeCtrl', ['$http', '$rootScope', '$scope', '$timeout', 'initialJSON', function($http, $rootScope, $scope, $timeout, initialJSON) {
   var vm = this;
   vm.len = "...";
