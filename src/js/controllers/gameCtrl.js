@@ -25,7 +25,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     resizeEmbed();
   });
 
-  // Declare function to rate game (This should perhaps be merged with the master.rate function)
+  // Declare function to rate game
   vm.rate = (x, action)=>{
     request_in_progress = true; block_auto_refresh = true;
     $http.get(urls.rating+"?action="+action+"&id="+x).then((response)=>{
@@ -43,13 +43,19 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     vm.author = "";
   }
   vm.comment = "";
+  // This function submits the comment the user has typed
   vm.submit_comment = ()=>{
+    // If all criteria are fulfilled, submit comment
     if (!request_in_progress && vm.comment.length > 0 && vm.author.length > 0) {
+      // When the form is untouched, no red error CSS is shown
       $scope.commentForm.$setUntouched();
+      // Try to save nickname, but don't do anything if an error occurs
       try { localStorage.username = vm.author; } catch (e) { }
       request_in_progress = true; block_auto_refresh = true;
+      // Actually submit comment
       $http.get(urls.comment+"?id="+$routeParams.id+"&com="+encodeURIComponent(vm.comment)+"&author="+encodeURIComponent(vm.author)).then((response)=>{
         request_in_progress = false; block_auto_refresh = false;
+        // Reset comment field and refresh comments
         vm.comment = "";
         refresh_comments();
       }).catch(()=>{
@@ -64,6 +70,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
   vm.goBack = ()=>$scope.master.routeChanged ? $window.history.back(1) : $location.path("/");
 
   vm.jquery = ()=>{
+    // This code makes the comment textarea auto resize
     let initialHeight = $("textarea").outerHeight();
     $("textarea").keyup(()=>{
       $("a.glyphicon[type=submit]").css("line-height", ($(".comments>form>div").height() - 24)+"px");
@@ -77,6 +84,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
 
     $(window).resize(resizeEmbed);
   };
+  initialJSON.jquery.then(vm.jquery);
 
   function resizeEmbed() {
     if (/^[\d.,]+%$/.test(vm.gamedata.height)) {
@@ -96,6 +104,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     });
   }
 
+  // This interval checks if new comments have been submitted since user loaded page
   let promise = $interval(()=>{
     if (!block_auto_refresh && !request_in_progress) {
       block_auto_refresh = true;
@@ -120,7 +129,6 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
   }, 2400);
   $scope.$on("$destroy", ()=>$interval.cancel(promise));
 
-  initialJSON.jquery.then(vm.jquery);
-
+  // This function checks if the go back arrow needs to have absolute position
   vm.ifSpace = ()=>window.innerWidth-document.querySelector("embed").clientWidth>140 && !$scope.master.ifMobile;
 }]);
