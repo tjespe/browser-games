@@ -11,7 +11,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     vm.gamedata = data;
     vm.loading = false;
     // Change title and description of page
-    $scope.master.loc = "Thorin-Games — "+data.title;
+    $scope.master.loc = "Texiplay — "+data.title;
     $scope.master.desc = data.description;
     // Trust gamedata url
     let game_url = $sce.trustAsResourceUrl(vm.gamedata.file);
