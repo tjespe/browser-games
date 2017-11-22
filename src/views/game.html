@@ -16,7 +16,7 @@
       <div ng-if="!g.gamedata.mobile && master.ifMobile && !g.loading" ng-bind="::master.textData.mobWarning"></div>
 
       <div class="flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="::master.textData.redirectNotice"></a></div>
-      <div class="flex redirect-notice" ng-if="g.showFlashPrompt"><a ng-bind-html="::master.textData.flashPrompt"></a></div>
+      <div ng-if="g.showFlashPrompt" ng-bind-html="::master.textData.flashPrompt"></div>
 
       <div class="flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
 
