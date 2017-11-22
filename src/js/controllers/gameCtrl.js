@@ -5,6 +5,7 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
   if (location.protocol === "https:") { location.protocol = "http:"; }
   vm.gamedata = {};
   vm.showRedirectPrompt = false;
+  vm.showFlashPrompt = false;
   vm.loading = true;
   // Fetch gamedata
   $httpx.get(urls.getGames+"?id="+$routeParams.id+"&pass="+initialJSON.pass, {lifetime: 60*60*1000}).then((data)=>{
@@ -15,12 +16,21 @@ app.controller("gameCtrl", ["$scope", "$routeParams", "$http", "$sce", "$interva
     $scope.master.desc = data.description;
     // Trust gamedata url
     let game_url = $sce.trustAsResourceUrl(vm.gamedata.file);
+    // Check if user has flash
+    let has_flash = false;
+    try {
+      has_flash = Boolean(new ActiveXObject('ShockwaveFlash.ShockwaveFlash'));
+    } catch(exception) {
+      has_flash = ('undefined' != typeof navigator.mimeTypes['application/x-shockwave-flash']);
+    }
     // Calculate width and height
     if (vm.gamedata.height === "n") { vm.gamedata.height = 0.75 * window.innerHeight; }
     if (vm.gamedata.height === "r" || vm.gamedata.width === "r") {
       vm.showRedirectPrompt = true;
-    } else {
+    } else if (has_flash || !vm.gamedata.file.match(/\.swf$/)) {
       $("embed").attr("src", game_url);
+    } else {
+      vm.showFlashPrompt = true;
     }
     resizeEmbed();
   });

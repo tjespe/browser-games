@@ -90,5 +90,6 @@
     "search": "Søk",
     "redirectNotice": "Dette spillet kan ikke spilles her. Trykk her for å bli videresendt til riktig side",
     "locChangeAlert": "Vennligst ikke forlat siden før serveren har svart",
-    "categoryDescription": "Her kan du finne alle våre spill med taggen \"{{tag}}\" sortert etter popularitet"
+    "categoryDescription": "Her kan du finne alle våre spill med taggen \"{{tag}}\" sortert etter popularitet",
+    "flashPrompt": "Du trenger Adobe Flash Player for å spille dette spillet. Du kan laste det ned <a href='https://get.adobe.com/flashplayer/'>herfra</a>."
 }

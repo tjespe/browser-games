@@ -1,4 +1,4 @@
-app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', '$scope', '$location', '$timeout', '$injector', '$q', 'initialJSON', '$httpx', 'urls', function($http, $window, $rootScope, $routeParams, $scope, $location, $timeout, $injector, $q, initialJSON, $httpx, urls) {
+app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', '$scope', '$location', '$timeout', '$injector', '$sce', '$q', 'initialJSON', '$httpx', 'urls', function($http, $window, $rootScope, $routeParams, $scope, $location, $timeout, $injector, $sce, $q, initialJSON, $httpx, urls) {
   let vm = this;
   vm.request_in_progress = false;
   vm.query = "";
@@ -64,6 +64,7 @@ app.controller('masterCtrl', ['$http', '$window', '$rootScope', '$routeParams', 
   // Load text-data
   $httpx.get('src/js/objects/'+vm.lang+'-text.json').then((data)=>{
     vm.textData = data;
+    vm.textData.flashPrompt = $sce.trustAsHtml(vm.textData.flashPrompt);
   }).catch((data, status)=>{
     console.log(data, status);
     confirm('Unable to load textdata, do you want to reload the page?') ? location.reload(true) : null;

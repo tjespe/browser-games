@@ -94,5 +94,6 @@
   "yourNick": "Tu apodo",
   "redirectNotice": "El juego no se puede jugar aquí. Haga clic aquí para ser redirigido",
   "locChangeAlert": "Por favor no salgas de la pagina hasta que el servidor responda",
-  "categoryDescription": "Aqui se encuentra todos nuestros juegos con la etiqueta \"{{tag}}\" Ordenado por popularidad"
+  "categoryDescription": "Aqui se encuentra todos nuestros juegos con la etiqueta \"{{tag}}\" Ordenado por popularidad",
+  "flashPrompt": "Necesitas Adobe Flash Player para jugar este juego. Puedes descargarlo desde <a href='https://get.adobe.com/flashplayer/'>aquí</a>."
 }
