@@ -90,5 +90,5 @@
   "redirectNotice": "This game can not be played here. Click here to be redirected",
   "locChangeAlert": "Please don't leave the page until the server has responded",
   "categoryDescription": "Here you can find all our games with the tag \"{{tag}}\" sorted by popularity",
-  "flashPrompt": "You need Adobe Flash Player to play this game. You can install it from <a href='https://get.adobe.com/flashplayer/'>here</a>."
+  "flashPrompt": "You need Adobe Flash Player to play this game. You can install it from <a href='https://get.adobe.com/flashplayer/'>here</a>. After installing it you need to restart your browser."
 }
