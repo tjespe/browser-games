@@ -4,6 +4,6 @@ app.controller('404Ctrl', ['$location', '$timeout', '$scope', function($location
     };
     $timeout(redirect, 3000);
 
-    $scope.master.loc = "Texiplay — "+$('h2')[0].innerText;
+    $scope.master.loc = "Tekiplay — "+$('h2')[0].innerText;
     $scope.master.desc = $('.error-content')[0].innerText.replace("\n", ".");
 }]);

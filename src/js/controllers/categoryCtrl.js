@@ -5,7 +5,7 @@ app.controller('categoryCtrl', ['$http', '$routeParams', '$scope', 'urls', 'init
   vm.max_amount = 1;
   vm.noGames = false;
   // Set title and description of page
-  $scope.master.loc = "Texiplay — "+(vm.tag !== "/" ? vm.tag : $scope.master.textData.title);
+  $scope.master.loc = "Tekiplay — "+(vm.tag !== "/" ? vm.tag : $scope.master.textData.title);
   $scope.master.desc = vm.tag !== "/" ? $scope.master.textData.categoryDescription.replace("{{tag}}", vm.tag) : $scope.master.textData.intro;
   // Load games from memory if they exist there
   vm.games = vm.tag in $scope.master.games ? vm.games = $scope.master.games[vm.tag] : [];
