@@ -29,7 +29,7 @@ h3 {
   margin-top: 10px;
 }
 
-.disabled, .disabled>a {
+.disabled, .disabled>a, .disable-glyphs .glyphicon {
   background-color: #ccc !important;
   cursor: not-allowed !important;
   color: initial !important;

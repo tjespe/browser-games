@@ -4,18 +4,18 @@
   </div>
 
   <div class="content games-wrapper">
-    <div id="games">
+    <div id="games" ng-class="{ 'disable-glyphs':master.ifDisabled() }">
       <div ng-repeat="game in cat.games track by $index" class="game-info-container" ng-if="!!game.mobile || !master.mobileGamesOnly">
         <div class="title" ng-click="master.goToGame(game.id)"><img ng-src="{{::game.thumbnail}}">{{::game.title}}</div>
         <div ng-click="master.goToGame(game.id)"><img height="80px" class="app-icon" ng-src="{{::game.thumbnail}}" alt="{{::game.title}}"></div>
         <div ng-click="master.goToGame(game.id)">
-          <span id="{{::game.id}}">{{game.likes}}</span> likes
+          <span id="{{::game.id}}">{{::game.likes}}</span> likes
         </div>
         <div class="app-desc" ng-click="master.goToGame(game.id)">{{::game.description}}</div>
         <div class="action-panel">
-          <div class="glyphicon glyphicon-thumbs-up" ng-click="master.like(game.id)" ng-class="{ disabled:master.ifDisabled() }"></div>
-          <div class="glyphicon glyphicon-play" ng-click="master.goToGame(game.id)" ng-class="{ disabled:master.ifDisabled() }"></div>
-          <div class="glyphicon glyphicon-thumbs-down" ng-click="master.dislike(game.id)" ng-class="{ disabled:master.ifDisabled() }"></div>
+          <div class="glyphicon glyphicon-thumbs-up" ng-click="master.like(game.id)"></div>
+          <div class="glyphicon glyphicon-play" ng-click="master.goToGame(game.id)"></div>
+          <div class="glyphicon glyphicon-thumbs-down" ng-click="master.dislike(game.id)"></div>
         </div>
       </div>
       <div class="game-info-container" ng-hide="cat.allGamesAreDisplayed()">
