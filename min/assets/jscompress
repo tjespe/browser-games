@@ -34,7 +34,7 @@ curl \
   --data output_info=errors \
   --data compilation_level=SIMPLE_OPTIMIZATIONS |
 
-python -c '
+python2.7 -c '
 import json, sys
 data = json.load(sys.stdin)
 print "Python script running, data:"
