@@ -1,7 +1,8 @@
 <style>
  .game-info-container {
-    border: 1px solid hsla(0,0%,80%,1);
+    box-shadow: 0 0 10px #ccc;
     margin-top:15px;
+    height: auto !important;
  }
  .flexbox {
    display: flex;
@@ -30,11 +31,13 @@
   <div class="flexbox">
     <div class="game-info-container">
       <div class="title" ng-bind="::master.textData.supportStaff"></div>
+      <div><img src="/src/img/support.png" class="app-icon"></div>
       <div class="description" ng-bind="::master.textData.supportStaffDesc"></div>
       <div class="link"><a href="mailto:support@tekiplay.tk">support@tekiplay.tk</a></div>
     </div>
     <div class="game-info-container">
       <div class="title" ng-bind="::master.textData.bugReport"></div>
+      <div><img src="/src/img/error.png" class="app-icon"></div>
       <div class="description" ng-bind="::master.textData.bugReportDesc"></div>
       <div class="link"><a href="mailto:bugreport@tekiplay.tk">bugreport@tekiplay.tk</a></div>
     </div>
