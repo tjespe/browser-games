@@ -3,6 +3,11 @@ body {
   font-family: ubuntu, sans-serif;
   line-height: 1.42857143;
   overflow-x: hidden;
+  padding-top: 70px; /* Make sure nothing is below header */
+}
+
+#game-view {
+  margin-top: -70px; /* Because header is hidden */
 }
 
 * {
@@ -107,30 +112,36 @@ body, .nav-pills>li>a, .send-message>li, .noMargin, ul {
 .flex {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 /* Home view CSS */
 .content {
-  font-size: 18px;
-  width: 80%;
   background: #FEFEFE;
   border: 1px solid #CCC;
-  margin: 35px auto;
-  padding-left: 11px;
-  padding-right: 11px;
-  max-width: 900px;
-  padding-bottom: 30px;
   border-radius: 15px;
+  font-size: 18px;
+  margin: 15px auto;
+  max-width: 900px;
+  padding: 10px;
+  width: 80%;
 }
 
 .games-wrapper {
-  width: calc(80% + 15px);
   max-width: 915px;
+  margin-top: -5px;
+  padding: 0 5px;
+  width: calc(80% + 15px);
 }
 
 #games, .games-wrapper {
   background-color: transparent;
   border: 0px;
+}
+
+#games {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .game-info-container {
@@ -194,12 +205,6 @@ img.app-icon:before {
   margin-bottom: 17.5px;
   word-wrap: break-word;
   padding: 0 5px;
-}
-
-#games {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -10px;
 }
 
 .title {

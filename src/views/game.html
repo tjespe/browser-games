@@ -1,48 +1,46 @@
-<div class="back-container" ng-class="{'absolute-container':g.ifSpace()}">
-  <a class="back-arrow" href ng-click="g.goBack()"><span class="glyphicon glyphicon-arrow-left"></span></a>
-</div>
-
-<div style="display:flex;flex-direction:column;margin-top:15px">
-  <div ng-hide="master.ifMobile && !g.gamedata.mobile" id="wrapper">
-    <embed width="{{g.gamedata.width}}" height="{{g.gamedata.height}}"></embed>
+<div id="game-view">
+  <div class="back-container" ng-class="{'absolute-container':g.ifSpace()}">
+    <a class="back-arrow" href ng-click="g.goBack()"><span class="glyphicon glyphicon-arrow-left"></span></a>
   </div>
 
-  <div class="game-sec flex" ng-class="{ noMargin:master.ifMobile }">
-    <div style="flex:1;"></div>
-
-    <div class="comments">
-      <div ng-if="g.loading"><img style="filter:invert()" src="/src/img/loading.svg" class="loader"></div>
-
-      <div ng-if="!g.gamedata.mobile && master.ifMobile && !g.loading" ng-bind="::master.textData.mobWarning"></div>
-
-      <div class="flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="::master.textData.redirectNotice"></a></div>
-      <div ng-if="g.showFlashPrompt" ng-bind-html="::master.textData.flashPrompt"></div>
-
-      <div class="flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
-
-      <div class="flex like-panel" ng-if="!g.loading">
-        <div class="glyphicon glyphicon-thumbs-up" ng-class="{ disabled:g.ifDisabled() }" ng-click="g.rate(g.gamedata.id, 'like')"></div>
-        <div class="instructions" ng-bind="g.gamedata.likes+' likes'"></div>
-        <div class="glyphicon glyphicon-thumbs-down" ng-class="{ disabled:g.ifDisabled() }" ng-click="g.rate(g.gamedata.id, 'dislike')"></div>
-      </div>
-
-      <div ng-repeat="com in g.gamedata.comments track by $index" ng-if="master.mlcLoaded">
-        <div class="com" ng-bind="com.com | mouthWash:this"></div>
-        <div class="com-author" ng-bind="com.author | mouthWash:this"></div>
-        <div class="com-date" ng-bind="com.date | chatTime:this"></div>
-      </div>
-
-      <form class="flex" name="commentForm" style="align-items:stretch;">
-        <div style="flex:3;">
-          <textarea type="text" name="comment" class="com comment-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{::master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
-          <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="comment-field" style="max-width:84%;" placeholder="{{::master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
-        </div>
-        <div style="flex:1;display:flex" class="send-message">
-          <a ng-class="{ disabled:g.ifDisabled() }" class="glyphicon glyphicon-send" ng-click="g.submit_comment()"></a>
-        </div>
-      </form>
+  <div style="display:flex;flex-direction:column;margin-top:15px">
+    <div ng-hide="master.ifMobile && !g.gamedata.mobile" id="wrapper">
+      <embed width="{{g.gamedata.width}}" height="{{g.gamedata.height}}"></embed>
     </div>
 
-    <div style="flex:1;"></div>
+    <div class="game-sec flex" ng-class="{ noMargin:master.ifMobile }">
+      <div class="comments">
+        <div ng-if="g.loading"><img style="filter:invert(1)" src="/src/img/loading.svg" class="loader"></div>
+
+        <div ng-if="!g.gamedata.mobile && master.ifMobile && !g.loading" ng-bind="::master.textData.mobWarning"></div>
+
+        <div class="flex redirect-notice" ng-if="g.showRedirectPrompt"><a href="{{g.gamedata.file}}" ng-bind="::master.textData.redirectNotice"></a></div>
+        <div ng-if="g.showFlashPrompt" ng-bind-html="::master.textData.flashPrompt"></div>
+
+        <div class="flex" ng-if="g.gamedata.instructions.length > 2"><div class="instructions" ng-bind="::g.gamedata.instructions"></div></div>
+
+        <div class="flex like-panel" ng-if="!g.loading">
+          <div class="glyphicon glyphicon-thumbs-up" ng-class="{ disabled:g.ifDisabled() }" ng-click="g.rate(g.gamedata.id, 'like')"></div>
+          <div class="instructions" ng-bind="g.gamedata.likes+' likes'"></div>
+          <div class="glyphicon glyphicon-thumbs-down" ng-class="{ disabled:g.ifDisabled() }" ng-click="g.rate(g.gamedata.id, 'dislike')"></div>
+        </div>
+
+        <div ng-repeat="com in g.gamedata.comments track by $index" ng-if="master.mlcLoaded">
+          <div class="com" ng-bind="com.com | mouthWash:this"></div>
+          <div class="com-author" ng-bind="com.author | mouthWash:this"></div>
+          <div class="com-date" ng-bind="com.date | chatTime:this"></div>
+        </div>
+
+        <form class="flex" name="commentForm" style="align-items:stretch;">
+          <div style="flex:3;">
+            <textarea type="text" name="comment" class="com comment-field" ng-model="g.comment" style="max-width: 99%;" placeholder="{{::master.textData.yourComment}}" ng-class="{ 'red-border':commentForm.comment.$invalid && commentForm.comment.$touched }" rows="1" required></textarea>
+            <div class="com-author">— <input type="text" name="author" ng-model="g.author" class="comment-field" style="max-width:84%;" placeholder="{{::master.textData.yourNick}}" ng-class="{ 'red-border':commentForm.author.$invalid && commentForm.author.$touched }" required></div>
+          </div>
+          <div style="flex:1;display:flex" class="send-message">
+            <a ng-class="{ disabled:g.ifDisabled() }" class="glyphicon glyphicon-send" ng-click="g.submit_comment()"></a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
