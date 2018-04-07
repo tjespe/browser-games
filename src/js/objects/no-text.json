@@ -54,7 +54,7 @@
     "gameInstr": "Instruksjoner (valgfritt)",
     "preview": "Forh\u00e5ndsvisning",
     "gameOnHome": "Slik vil spillet vises p\u00e5 siden",
-    "gamePreview": "Slik ser spillet ut (h\u00f8yden og bredden er et eksempel)",
+    "gamePreview": "Slik ser spillet ut, men det vil få en annen høyde og bredde",
     "showPreview": "Vis forh\u00e5ndsvisning",
     "gameTitleErr": "Vennligst fyll ut navn for spillet",
     "gameUrlErr": "Vennligst fyll ut en gyldig url til spillet",

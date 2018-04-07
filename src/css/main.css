@@ -58,6 +58,11 @@ img {
   vertical-align: middle;
 }
 
+iframe {
+  border: 0;
+  box-shadow: 0 0 10px #ccc;
+}
+
 button, input, textarea {
   color: inherit;
   margin: 0;

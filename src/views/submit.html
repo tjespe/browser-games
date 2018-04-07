@@ -23,26 +23,17 @@
       <div ng-if="sub.showPreview" ng-hide="sub.loading" ng-show="!sub.success">
         <h2 ng-bind="::master.textData.preview"></h2>
         <h4 ng-bind="::master.textData.gameOnHome"></h4>
-        <div class="game-info-container" style="margin: 10px auto;">
+        <div class="game-info-container" style="margin: 10px auto;box-shadow: 0 0 10px #ccc">
           <div class="title"><img ng-src="{{sub.game.thumbnail}}">{{sub.game.title}}</div>
-          <div><img height="80px" class="app-icon" ng-src="{{sub.game.thumbnail}}"></div>
+          <div><img height="80px" class="app-icon" ng-src="{{sub.game.thumbnail}}" alt="{{sub.game.title}}"></div>
           <div>
             <span>{{sub.game.likes}}</span> likes
           </div>
           <div class="app-desc">{{sub.game.description}}</div>
-          <div class="like-panel-wrapper">
-            <div class="like-panel" ng-if="!master.ifMobile">
-              <div>
-                <button class="like"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-              </div>
-              <div>
-                <button class="like"><span class="glyphicon glyphicon-thumbs-down"></span></button>
-              </div>
-            </div>
-            <ul class="nav nav-pills mob-like" ng-if="master.ifMobile">
-              <li><a><span class="glyphicon glyphicon-thumbs-up"></span></a></li>
-              <li><a><span class="glyphicon glyphicon-thumbs-down"></span></a></li>
-            </ul>
+          <div class="action-panel">
+            <div class="glyphicon glyphicon-thumbs-up"></div>
+            <div class="glyphicon glyphicon-play"></div>
+            <div class="glyphicon glyphicon-thumbs-down"></div>
           </div>
         </div>
         <div>
