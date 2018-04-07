@@ -317,7 +317,6 @@ app.filter('mouthWash', function() {
     " teez ",
     " testic",
     " tit",
-    "tit ",
     " tosser ",
     "tw4t",
     " twat",
@@ -339,7 +338,7 @@ app.filter('mouthWash', function() {
     if (!scope.master.verifiedUser && typeof input !== "undefined") {
       angular.forEach(badWords, function(word){
         let regex = new RegExp(word.split('').join('\\s*'), 'gi');
-        input = input.replace(regex, " mooh ");
+        input = input.replace(regex, " quack ");
       });
     }
     return input;

@@ -1,5 +1,4 @@
 app.filter('chatTime', ["$filter", function ($filter) {
-  console.log("chatTime.js loaded and executing");
   var text = {secs: "seconds ago",mins: "minutes ago",hours: "hours ago"};
   if (navigator.language.indexOf('nb')>-1 || navigator.language.indexOf('nn')>-1 || navigator.language.indexOf('no')>-1 ) {
     text = {secs: "sekunder siden",mins: "minutter siden",hours: "timer siden"};
